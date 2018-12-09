@@ -1,0 +1,17 @@
+
+<main id="content">
+
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+    <form action="" method="POST">
+        <input name="articleId" type="hidden" value="{{id}}"/>
+        <input name="title" type="text" value="{{title}}"/>
+        <textarea name="editInput" id="editInput" rows="10" cols="80">{{text}}</textarea>
+        <input type="submit" content="OK"/>
+        <input type="button" content="Отмена" />
+    </form>
+    <script>
+        CKEDITOR.replace( 'editInput' );
+    </script>
+
+
+</main>

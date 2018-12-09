@@ -1,0 +1,81 @@
+<section id="comments">
+    <div>
+        <script type="text/javascript">
+            function fillComments( data )
+            {
+                var comments = document.getElementById( 'commentsContainer' );
+                comments.innerHTML = data;
+            }
+            function onNewCommentClick()
+            {
+                var articleId = document.getElementById("articleId").value;
+                var text = document.getElementById("txtNewComment").value;
+                //testMain();
+                var postPars = 'id=' +  articleId + '&text=' + text;
+                sendPost('/comments/add/', postPars, fillComments);
+            }
+            function deleteComment(commentId)
+            {
+                var postPars = 'commentId=' + commentId;
+                sendPost('/comments/delete/', postPars);
+            }
+            function sendEditedComment(commentId)
+            {
+                var commentText = document.getElementById("txtCommentText").value;
+                var postPars = 'id=' +  commentId + '&text=' + commentText;
+                sendPost('/comments/edit/', postPars, function () {});
+                document.getElementById("comment" + commentId).innerHTML = commentText;
+                destroyModalWindow();
+            }
+            function editComment(commentId)
+            {
+                var content = [
+                    {"TextArea" : {
+                    rows: 3,
+                    id:"txtCommentText",
+                    innerHtml : document.getElementById("comment" + commentId).innerHTML
+                    }},
+                    {"div style='margin-left: auto; margin-right: auto;'": [
+                            {
+                                "div": {
+                                    class: "editButton",
+                                    onClick: "sendEditedComment(" + commentId + ")",
+                                    innerHtml: "OK"
+                                }
+                            },
+                            {
+                                "div": {
+                                    class: "editButton",
+                                    onClick: " destroyModalWindow()",
+                                    innerHtml: "Отмена"
+                                }
+                            }, {"div":{class:"clr"}}]
+                    }];
+                createModalWindow(JSONtoSTR(content), 82);
+            }
+        </script>
+
+        <a id="btnNewComment" onclick="onNewCommentClick()">
+            <div>
+                <div class="buttonText">Добавить комментарий</div>
+                <img src="/images/add.png" class="rightButton">
+            </div>
+        </a>
+        <textarea id="txtNewComment" rows="3" style='width:100%; padding:0;'></textarea>
+        {{#each comments}}
+            <div class="commentBody">
+                <div class="commentAuthor">{{author}}</div>
+                <div class="editButton" onclick="editComment({{commentId}})">
+                    <img src="/images/edit.png" alt="Редактировать" class="rightButton">
+                </div>
+                <div class="editButton" onclick="deleteComment({{commentId}})">
+                    <img src="/images/delete.svg" alt="Удалить" class="rightButton">
+                </div>
+                <div class="commentText" id="comment{{commentId}}">{{text}}</div>
+            </div>
+<div id="commentEditor">
+</div>
+        {{/each}}
+    </div>
+
+</section>
