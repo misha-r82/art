@@ -9,19 +9,22 @@ module.exports = function (passport) {
             callbackURL:  "http://localhost:3000/auth/vk/callback"
         },
         function VerifyCallback(accessToken, refreshToken, params, profile, done) {
-            var user = users.getUser(ID_SOTIAL, profile.id);
-            if (user == null)
-            {
-                user = {
-                    profileId:profile.id,
-                    sotialId:ID_SOTIAL,
-                    username: profile.displayName,
-                    photoURL: profile.photos[0].value,
-                }
-                users.addUser(user);
+            users.getUser(ID_SOTIAL, profile.id)
+                .then(
+                    null,
+                err=>
+                {
+                    user = {
+                        profileId:profile.id,
+                        sotialId:ID_SOTIAL,
+                        username: profile.displayName,
+                        photoURL: profile.photos[0].value,
+                    }
+                    users.addUser(user);
+                });
+                return done(null, user);
             }
-            return done(null, user);
-        }
+
     ));
 
 }
