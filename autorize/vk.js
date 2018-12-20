@@ -10,9 +10,7 @@ module.exports = function (passport) {
         },
         function VerifyCallback(accessToken, refreshToken, params, profile, done) {
             users.getUser(ID_SOTIAL, profile.id)
-                .then(
-                    null,
-                err=>
+                .then( user=>done(null, user), err=>
                 {
                     user = {
                         profileId:profile.id,
@@ -21,8 +19,9 @@ module.exports = function (passport) {
                         photoURL: profile.photos[0].value,
                     }
                     users.addUser(user);
+                    done(null, user);
                 });
-                return done(null, user);
+
             }
 
     ));
