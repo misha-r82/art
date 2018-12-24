@@ -72,15 +72,15 @@ input[type~='text' 'password'] select {
 }
 .rightButton
 {
-    width: 24px;
-    height:24px;
+    width: 22px;
+    height:22px;
     margin: 2px;
     float: right;
 }
 .buttonText
 {
     float: right;
-    line-height: 24px;
+    line-height: 22px;
     margin: 1px;
 }
 #comments
