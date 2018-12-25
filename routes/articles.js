@@ -21,8 +21,20 @@ router.get( '/', function(req, res)
 router.route('/add')
     .get(function(req, res)
     {
-        var newArticle = {id : -1, title: "", text : "" };
-        res.render('article_edit', newArticle);
+        console.log(req.isAuthenticated());
+        if (!req.isAuthenticated())
+        {
+            res.redirect("/login");
+            return;
+        }
+        var result = {article : {id : -1, title: "", text : "", author:req.user.id }};
+        dbRazdel.getRazdels().then(
+            r => {
+                readRazdels(r, 1);
+                result.razdelList = r;
+                res.render('article_edit', result);
+            },
+            null);
     })
     .post(function (req, res)
     {
@@ -40,16 +52,10 @@ router.route('/edit/:id')
         db.getArticle( req.params.id, function( err, data )
         {
             if(err) return;
-            var result = {};
-            result.article = readArticle(data[0]);
+            var result = {article : readArticle(data[0])};
             dbRazdel.getRazdels().then(
                 r => {
-                    for(i = 0; i<r.length; i++)
-                        r[i] = {
-                            razdelId:r[i].id,
-                            razdel:r[i].razdel,
-                            selected:r[i].id === result.article.razdelId
-                        }
+                    readRazdels(r, r.article.id);
                     result.razdelList = r;
                     res.render('article_edit', result);
                 },
@@ -83,6 +89,15 @@ router.get( '/delete/:id', function(req, res)
     req.flash('msg', 'статья удалена!');
     res.redirect('/articles');
 });
+function readRazdels(data, articleId)
+{
+    for(i = 0; i<data.length; i++)
+        data[i] = {
+            razdelId:data[i].id,
+            razdel:data[i].razdel,
+            selected:data[i].id === articleId
+        }
+}
 function readArticleFromBody(body)
 {
     obj =

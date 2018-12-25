@@ -14,8 +14,8 @@ function Db()
         },
         addArticle: function( article, callback )
         {
-            var sql = "INSERT INTO articles (razdel_id, title, text, author) VALUES " +
-                "(`'${article.razdelId}','${article.title}',''${article.text}','${article.author}');";
+            var sql = `INSERT INTO articles (razdel_id, title, text, author) VALUES  
+                ('${article.razdelId}','${article.title}',''${article.text}','${article.author}');`;
             connection.query( sql, callback );
         },
 

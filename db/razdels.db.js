@@ -13,6 +13,7 @@ function Db()
                 connection.query(sql, function (err, data) {resolve(data);});
             })
         },
+
     };
 }
 
