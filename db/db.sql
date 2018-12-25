@@ -19,6 +19,7 @@ USE `node`;
 -- Дамп структуры для таблица node.articles
 CREATE TABLE IF NOT EXISTS `articles` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `razdel_id` int(10) NOT NULL,
   `title` tinytext NOT NULL,
   `text` text,
   `author` varchar(256) DEFAULT NULL,
@@ -39,13 +40,12 @@ CREATE TABLE IF NOT EXISTS `comments` (
 ) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
--- Дамп структуры для таблица node.test1
-CREATE TABLE IF NOT EXISTS `test1` (
-  `contact_id` int(10) NOT NULL DEFAULT '0',
-  `name` varchar(40) DEFAULT NULL,
-  `birthdate` date DEFAULT NULL,
-  PRIMARY KEY (`contact_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- Дамп структуры для таблица node.razdels
+CREATE TABLE IF NOT EXISTS `razdels` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `razdel` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- Экспортируемые данные не выделены.
 -- Дамп структуры для таблица node.users
@@ -53,11 +53,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userName` varchar(255) NOT NULL DEFAULT '0',
   `sotialId` int(8) NOT NULL DEFAULT '-1',
-  `creaed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `photoURL` text,
   `profileId` int(12) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- Экспортируемые данные не выделены.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
