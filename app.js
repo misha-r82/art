@@ -27,6 +27,7 @@ app.use(require('connect-flash')());
 var passport = require('./autorize/passport.js')(app);
 var index = require('./routes/index');
 var articles = require('./routes/articles');
+var articlesAdmin = require('./routes/admin/articles');
 var comments = require('./routes/comments');
 
 
@@ -36,7 +37,7 @@ app.use('/', index);
 app.use('/articles', articles);
 app.use('/comments', comments);
 app.use('/login', require('./routes/login')(app));
-
+app.use('/admin/articles', articlesAdmin);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
