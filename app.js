@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+const FileStore = require('session-file-store')(session);
 var app = new express();
 var hbs = require('hbs');
 hbs.registerPartials(__dirname + "/views/partials");
@@ -16,13 +17,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-    cookie: { maxAge: 60000 },
-    secret: 'secret',
-    saveUninitialized: false,
-    resave: false
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
+    store: new FileStore(),
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
 }));
 app.use(require('connect-flash')());
-
+var passport = require('./autorize/passport.js')(app);
 var index = require('./routes/index');
 var articles = require('./routes/articles');
 var comments = require('./routes/comments');
@@ -46,7 +48,7 @@ app.use(function(err, req, res, next)
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
- console.log(req);
+ //console.log(req);
   // render the error page
   res.status(err.status || 500);
   res.render('error');

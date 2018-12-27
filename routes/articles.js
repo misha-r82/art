@@ -27,7 +27,7 @@ router.route('/add')
             res.redirect("/login");
             return;
         }
-        var result = {article : {id : -1, title: "", text : "", author:req.user.id }};
+        var result = {article : {id : -1, title: "", text : "" }};
         dbRazdel.getRazdels().then(
             r => {
                 readRazdels(r, 1);

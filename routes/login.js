@@ -17,8 +17,6 @@ module.exports = function(app)
             failureRedirect: '/login'
         }),
         function (req, res) {
-            // Successful authentication
-            //, redirect home.
             res.redirect('/');
         });
     router.get('/', function(req, res, next)
@@ -35,7 +33,8 @@ module.exports = function(app)
                     return res.send('Укажите правильный email и пароль!');
                 }
                 req.login(user, err => {
-                    return res.send('Вы удачно прошли аутентификацию!');
+                    if(err) console.log(err);
+                    res.redirect('/');
                 });
             })(req, res, next);
         }

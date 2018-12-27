@@ -8,7 +8,7 @@ module.exports = function (passport) {
             if (password != 'admin')
                 return done(null, false, {message: 'Неверный пароль'});
 
-            return done(null, {username: 'admin'});
+            return done(null, {username: 'admin', id:13});
         }
     ));
 
