@@ -39,6 +39,7 @@ router.route('/add')
     .post(function (req, res)
     {
         var article = readArticleFromBody(req.body);
+        article.author = req.user.id;
         db.addArticle(article, 0,
             function () {
                 req.flash('msg', 'статья успешно создана!');
