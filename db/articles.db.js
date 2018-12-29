@@ -4,13 +4,33 @@ function Db()
 {
     var FIELDS = '';
     var connection = require('../db/db.js').connection;
+    function readArticle(row)
+    {
+        var obj =
+            {
+                id: row.id,
+                razdelId : row.razdel_id,
+                title: row.title,
+                text: row.text,
+                created: row.created,
+                updated: row.updated
+            }
+        return obj;
+    }
+
+
     return {
 
 
         getArticle: function( id, callback )
         {
-            var sql = `SELECT id, razdel_id, title, text FROM articles WHERE id=${id};`;
-            connection.query( sql, callback );
+            var sql = `SELECT id, razdel_id, title, text, author, created, updated FROM articles WHERE id=${id};`;
+            connection.query( sql, function(err, data) {
+                if (err) return callback(err, null);
+                if (data.length < 1) return callback(null, null);
+                readArticle(data[0]);
+                callback(null, data[0]);
+            } );
         },
         addArticle: function( article, callback )
         {
@@ -27,14 +47,21 @@ function Db()
         deleteArticle: function ( id, callback )
         {
             var sql = "DELETE FROM comments " + " WHERE to_article='"+id+"';";
-            connection.query( sql, callback );
-            var sql = "DELETE FROM articles " + " WHERE id='"+id+"';";
-            connection.query( sql, callback );
+            connection.query( sql, function (err, data) {
+                var sql = "DELETE FROM articles " + " WHERE id='"+id+"';";
+                connection.query(err, callback );
+            } );
+
         },
         getArticlesList: function( callback )
         {
             var sql = "SELECT id, title, author, created, updated FROM articles ORDER BY created DESC;";
-            connection.query( sql, callback );
+            connection.query( sql, function (err, data){
+                if(err) return callback(err, null);
+                for(i=0; i<data.length; i++)
+                   data[i] = readArticle(data[i]);
+                callback(null, data);
+            } );
         },
         addComment: function( id, author, text, callback )
         {

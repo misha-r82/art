@@ -3,15 +3,13 @@
         <span style="color: red">{{message}}</span>
     </div>
 {{/if}}
-<h1>Статьи</h1>
+<h1>{{razdel}}</h1>
 <div id="content">
     <table width="100%">
         {{#each articles}}
-            <tr>
-                <td>
-                    <div><a href="/articles/{{id}}">{{title}}{{created}}</a></div>
-                </td>
-            </tr>
+
+            <H2><a href="/articles/{{id}}">{{title}}</a></H2>
+            <div>{{created}}</div>
         {{/each}}
     </table>
 
