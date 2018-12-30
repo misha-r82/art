@@ -5,13 +5,11 @@
 {{/if}}
 <h1>{{razdel}}</h1>
 <div id="content">
-    <table width="100%">
-        {{#each articles}}
+    {{#each articles}}
 
-            <H2><a href="/articles/{{id}}">{{title}}</a></H2>
-            <div>{{created}}</div>
-        {{/each}}
-    </table>
+        <H2><a href="/articles/{{id}}">{{title}}</a></H2>
+        <div>{{created}}</div>
+    {{/each}}
 
 </div>
 </div>

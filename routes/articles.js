@@ -4,11 +4,28 @@ var db = require('../db/articles.db.js')();
 var dbRazdel = require('../db/razdels.db.js')();
 var comments = require('../controllers/comments.js')();
 module.exports = router;
+router.use(function(req, res, next){
+    dbRazdel.getRazdels(true).then(
+        (data)=>{res.razdelMenu = data;
+        next();
+        }, null
+    )
+
+});
+router.get( '/razdel/:id', function(req, res)
+{
+    db.getArticlesList(req.params.id, function (err, data) {
+        if (err) return;
+        res.render('articles', {articles: data, message: req.flash('msg'),
+            razdelMenu:res.razdelMenu});
+    });
+});
 router.get( '/', function(req, res)
 {
-    db.getArticlesList(function (err, data) {
+    db.getArticlesList(-1, function (err, data) {
         if (err) return;
-        res.render('articles', {articles: data, message: req.flash('msg')});
+        res.render('articles', {articles: data, message: req.flash('msg'),
+        razdelMenu:res.razdelMenu});
     });
 })
 router.get( '/:id', function(req, res)
@@ -21,5 +38,6 @@ router.get( '/:id', function(req, res)
     })
     });
 });
+
 
 module.exports = router;

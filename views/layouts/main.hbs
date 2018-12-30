@@ -13,7 +13,13 @@
         <li><a href="/admin/articles">Администрирование</a></li>
     </ul>
 </nav>
+<ul>
+    {{#each razdelMenu}}
 
+        <a href="/razdel/{{razdelId}}">{{razdel}}</a>
+        <span>({{artCount}})</span>
+    {{/each}}
+</ul>
     {{{body}}}
 </body>
 </html>

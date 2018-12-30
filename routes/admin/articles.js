@@ -79,15 +79,7 @@ router.get( '/delete/:id', function(req, res)
     req.flash('msg', 'статья удалена!');
     res.redirect('/articles');
 });
-function readRazdels(data, articleId)
-{
-    for(i = 0; i<data.length; i++)
-        data[i] = {
-            razdelId:data[i].id,
-            razdel:data[i].razdel,
-            selected:data[i].id === articleId
-        }
-}
+
 function readArticleFromBody(body)
 {
     obj =
