@@ -32,12 +32,19 @@ router.get( '/:id', function(req, res)
 {
     db.getArticle( req.params.id, function( err, article )
     {
-    if(err) return;
+    if(err, article == undefined) return;
     comments.getArticleComments(article, function () {
         res.render('article_view', article);
     })
     });
 });
 
+
+router.get( '/delete/:id', function(req, res)
+{
+    db.deleteArticle(req.params.id);
+    req.flash('msg', 'статья удалена!');
+    res.redirect('/articles');
+});
 
 module.exports = router;

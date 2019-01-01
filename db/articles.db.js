@@ -56,8 +56,8 @@ function Db()
         getArticlesList: function(razdelId, callback )
         {
             var sql = (razdelId > -1) ?
-                "SELECT id, title, author, created, updated FROM articles ORDER BY created DESC;" :
-                `SELECT id, title, author, created, updated FROM articles WHERE razdel_id = ${razdelId} ORDER BY created DESC;`
+                `SELECT id, title, author, created, updated FROM articles WHERE razdel_id = ${razdelId} ORDER BY created DESC;`:
+                "SELECT id, title, author, created, updated FROM articles ORDER BY created DESC;"
             connection.query( sql, function (err, data){
                 if(err) return callback(err, null);
                 for(i=0; i<data.length; i++)

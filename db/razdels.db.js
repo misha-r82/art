@@ -6,6 +6,7 @@ function Db()
     var connection = require('../db/db.js').connection;
     function readRazdels(data, articleId)
     {
+        if (data === null || data === undefined) return;
         for(i = 0; i<data.length; i++)
             data[i] = {
                 razdelId:data[i].id,
