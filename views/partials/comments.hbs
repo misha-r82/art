@@ -14,10 +14,11 @@
                 var postPars = 'id=' +  articleId + '&text=' + text;
                 sendPost('/comments/add/', postPars, fillComments);
             }
+
             function deleteComment(commentId)
             {
                 var postPars = 'commentId=' + commentId;
-                sendPost('/comments/delete/', postPars);
+                sendPost('/comments/delete/', postPars, fillComments(data));
             }
             function sendEditedComment(commentId)
             {
