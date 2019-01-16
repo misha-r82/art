@@ -77,8 +77,14 @@ function Db()
         },
         updateComment: function ( comment, callback )
         {
-            var sql = `UPDATE comments SET text = '${comment.text}' WHERE id='${comment.id}';`;
-            connection.query( sql, callback );
+            var sql = `UPDATE comments SET text = '${comment.text}' WHERE id='${comment.id}'`;
+            connection.query( sql, function (err) {
+                if (err) return err;
+                sql = `SELECT text FROM comments WHERE id ='${comment.id}'`;
+                connection.query( sql, function (err, data) {
+                callback(err, data[0]['text']);
+                })
+            } );
         },
 
 

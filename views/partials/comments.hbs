@@ -24,9 +24,11 @@
             {
                 var commentText = document.getElementById("txtCommentText").value;
                 var postPars = 'id=' +  commentId + '&text=' + commentText;
-                sendPost('/comments/edit/', postPars, function () {});
-                document.getElementById("comment" + commentId).innerHTML = commentText;
-                destroyModalWindow();
+                sendPost('/comments/edit/', postPars, function (res) {
+                    document.getElementById("comment" + commentId).innerHTML = res;
+                    destroyModalWindow();
+                });
+
             }
             function editComment(commentId)
             {

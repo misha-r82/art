@@ -22,10 +22,9 @@ router.post('/delete/', function (req,res)
 router.post('/edit/', function (req,res)
 {
     var comment = { id:req.body.id, text:req.body.text};
-    db.updateComment(comment, function (req, res)
+    db.updateComment(comment, function (err, data)
         {
-
+            res.send(data);
         });
-
 });
 module.exports = router;
