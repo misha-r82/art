@@ -68,12 +68,22 @@ function Db()
         addComment: function( id, author, text, callback )
         {
             var sql = "INSERT INTO comments (to_article, text, author) VALUES ('"+id+"','"+text+"','"+author+"');";
-            connection.query( sql, callback );
+            connection.query( sql, function (err, data) {
+                var comment = {
+                    "commentId":data.insertId,
+                    "author":author,
+                    "text":text,
+                }
+                callback(err, comment);
+            } );
         },
-        deleteComment: function ( id)
+        deleteComment: function (id, callback)
         {
             var sql = `DELETE FROM comments WHERE id='${id}';`;
-            connection.query( sql);
+            connection.query(sql, function(err,data)
+            {
+                callback(err, data)
+            });
         },
         updateComment: function ( comment, callback )
         {

@@ -1,0 +1,11 @@
+<div class="commentBody" id="comment{{commentId}}">
+    <div class="commentAuthor">{{author}}</div>
+    <div class="editButton" onclick="editComment({{commentId}})">
+        <img src="/images/edit.png" alt="Редактировать" class="rightButton">
+    </div>
+    <div class="editButton" onclick="deleteComment({{commentId}})">
+        <img src="/images/delete.svg" alt="Удалить" class="rightButton">
+    </div>
+    <div class="commentText" id="commentText{{commentId}}">{{text}}</div>
+</div>
+

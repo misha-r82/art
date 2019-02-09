@@ -30,8 +30,8 @@ module.exports = function()
     getArticleComments: getArticleComments,
     newComment: function(article, text ,callback)
     {
-        db.addComment(article.id, 'user', text, function () {
-           getArticleComments(article, callback);
+        db.addComment(article.id, 'user', text, function (err, data) {
+           callback(err, data);
         });
     }
 
