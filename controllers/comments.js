@@ -16,14 +16,14 @@ module.exports = function()
     }
     function getArticleComments(article, callback)
     {
-        db.getCommentsList( article.id, function( err, data )
-        {
-            if(err) return;
-            article.comments = new Array();
+        return new Promise(async function(resolve, reject) {
+            var data = await db.getCommentsList( article.id);
+            var comments = new Array();
             for (i = 0; i<data.length; i++)
-                article.comments.push(readComment(data[i]));
-            callback();
+                comments.push(readComment(data[i]));
+            resolve(comments);
         });
+
     }
     return {
         // добавляет к статье массив комментариев

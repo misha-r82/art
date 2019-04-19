@@ -18,8 +18,7 @@ module.exports = function (passport) {
                         username: profile.displayName,
                         photoURL: profile.photos[0].value,
                     }
-                    users.addUser(user);
-                    done(null, user);
+                    users.addUser(user).then(done(null, user));
                 });
 
             }

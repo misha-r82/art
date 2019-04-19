@@ -19,7 +19,8 @@ module.exports = function(app)
         function (req, res) {
             res.redirect('/');
         });
-    router.get('/', function(req, res, next)
+
+    router.get('/', async function(req, res, next)
     {
         res.render('login');
     })

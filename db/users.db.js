@@ -19,8 +19,11 @@ function Db()
 
         addUser: function ( user )
         {
-            var sql = `INSERT INTO \`users\` (username, sotialId, profileId, photoURL) VALUES ('${user.username}','${user.sotialId}','${user.profileId}','${user.photoURL}');`;
-            connection.query( sql);
+            return new Promise((resolve, reject) => {
+                var sql = `INSERT INTO \`users\` (username, sotialId, profileId, photoURL)` +
+                    `VALUES ('${user.username}','${user.sotialId}','${user.profileId}','${user.photoURL}');`;
+                connection.query( sql);
+            })
         }
     };
 }

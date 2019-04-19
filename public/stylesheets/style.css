@@ -70,6 +70,16 @@ input[type~='text' 'password'] select {
 {
    float: right;
 }
+.rightPanel
+{
+    display: inline-block;
+    margin: 2px;
+    float: right;
+}
+.clr
+{
+    float: none;
+}
 .rightButton
 {
     width: 22px;

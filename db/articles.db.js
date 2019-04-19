@@ -22,86 +22,110 @@ function Db()
     return {
 
 
-        getArticle: function( id, callback )
+        getArticle: function( id)
         {
-            var sql = `SELECT id, razdel_id, title, text, author, created, updated FROM articles WHERE id=${id};`;
-            connection.query( sql, function(err, data) {
-                if (err) return callback(err, null);
-                if (data.length < 1) return callback(null, null);
-                readArticle(data[0]);
-                callback(null, data[0]);
-            } );
+            return new Promise((resolve, reject) => {
+                var sql = `SELECT id, razdel_id, title, text, author, created, updated FROM articles WHERE id=${id};`;
+                connection.query( sql, function(err, data) {
+                    if (err) return reject(err);
+                    if (data.length < 1) return reject("отстуствуют разделы!");
+                    readArticle(data[0]);
+                    resolve(data[0]);
+                } );
+            });
+
         },
-        addArticle: function( article, callback )
+        addArticle: function(article)
         {
-            var sql = `INSERT INTO articles (razdel_id, title, text, author) VALUES  
+            return new Promise((resolve, reject) => {
+                var sql = `INSERT INTO articles (razdel_id, title, text, author) VALUES  
                 ('${article.razdelId}','${article.title}','${article.text}',${article.author});`;
-            connection.query( sql, callback );
+                connection.query( sql, resolve );
+            })
         },
 
-        updateArticle: function ( article, callback )
+        updateArticle: function ( article )
         {
-            var sql = `UPDATE articles SET razdel_id='${article.razdelId}', title = '${article.title}', text='${article.text}' WHERE id='${article.id}';`;
-            connection.query( sql, callback );
+            return new Promise(function(resolve, reject) {
+                var sql = `UPDATE articles SET razdel_id='${article.razdelId}', title = '${article.title}', text='${article.text}' WHERE id='${article.id}';`;
+                connection.query(sql, resolve);
+            });
         },
         deleteArticle: function ( id, callback )
         {
-            var sql = "DELETE FROM comments " + " WHERE to_article='"+id+"';";
-            connection.query( sql, function (err, data) {
-                var sql = "DELETE FROM articles " + " WHERE id='"+id+"';";
-                connection.query(err, callback );
-            } );
-
+            return new Promise(function(resolve, reject) {
+                var sql = "DELETE FROM comments " + " WHERE to_article='" + id + "';";
+                connection.query(sql, function (err, data) {
+                    var sql = "DELETE FROM articles " + " WHERE id='" + id + "';";
+                    connection.query(err, resolve);
+                });
+            });
         },
         getArticlesList: function(razdelId, callback )
         {
-            var sql = (razdelId > -1) ?
-                `SELECT id, title, author, created, updated FROM articles WHERE razdel_id = ${razdelId} ORDER BY created DESC;`:
-                "SELECT id, title, author, created, updated FROM articles ORDER BY created DESC;"
-            connection.query( sql, function (err, data){
-                if(err) return callback(err, null);
-                for(i=0; i<data.length; i++)
-                   data[i] = readArticle(data[i]);
-                callback(null, data);
-            } );
+            return new Promise(function(resolve, reject) {
+                var sql = (razdelId > -1) ?
+                    `SELECT id, title, author, created, updated FROM articles WHERE razdel_id = ${razdelId} ORDER BY created DESC;`:
+                    "SELECT id, title, author, created, updated FROM articles ORDER BY created DESC;"
+                connection.query( sql, function (err, data){
+                    if(err) return reject(err);
+                    for(i=0; i<data.length; i++)
+                        data[i] = readArticle(data[i]);
+                    resolve(data);
+                } );
+            });
+
         },
-        addComment: function( id, author, text, callback )
+        addComment: function( id, author, text)
         {
-            var sql = "INSERT INTO comments (to_article, text, author) VALUES ('"+id+"','"+text+"','"+author+"');";
-            connection.query( sql, function (err, data) {
-                var comment = {
-                    "commentId":data.insertId,
-                    "author":author,
-                    "text":text,
-                }
-                callback(err, comment);
-            } );
-        },
-        deleteComment: function (id, callback)
-        {
-            var sql = `DELETE FROM comments WHERE id='${id}';`;
-            connection.query(sql, function(err,data)
-            {
-                callback(err, data)
+            return new Promise(function(resolve, reject) {
+                var sql = "INSERT INTO comments (to_article, text, author) VALUES ('" + id + "','" + text + "','" + author + "');";
+                connection.query(sql, (err, data) => {
+                    var comment = {
+                        "commentId": data.insertId,
+                        "author": author,
+                        "text": text,
+                    }
+                    if (err) reject(err);
+                    resolve(comment);
+                });
             });
         },
-        updateComment: function ( comment, callback )
+        deleteComment: function (id, callback) {
+            return new Promise(function (resolve, reject) {
+                var sql = `DELETE FROM comments WHERE id='${id}';`;
+                connection.query(sql, (err, data) => {
+                    if (err) reject(err);
+                    resolve(data)
+                });
+            });
+        },
+        updateComment: function( comment )
         {
-            var sql = `UPDATE comments SET text = '${comment.text}' WHERE id='${comment.id}'`;
-            connection.query( sql, function (err) {
-                if (err) return err;
-                sql = `SELECT text FROM comments WHERE id ='${comment.id}'`;
-                connection.query( sql, function (err, data) {
-                callback(err, data[0]['text']);
-                })
-            } );
+            return new Promise(function(resolve, reject) {
+                var sql = `UPDATE comments SET text = '${comment.text}' WHERE id='${comment.id}'`;
+                connection.query( sql, function (err) {
+                    if (err) return err;
+                    sql = `SELECT text FROM comments WHERE id ='${comment.id}'`;
+                    connection.query( sql, function (err, data) {
+                        if (err) reject(err);
+                        resolve(data[0]['text']);
+                    })
+                } );
+            })
         },
 
 
-        getCommentsList: function( id, callback )
+        getCommentsList: (id) =>
         {
-            var sql = "SELECT * FROM comments WHERE to_article='"+id+"' ORDER BY created DESC;";
-            connection.query( sql, callback );
+            return new Promise(function(resolve, reject) {
+                var sql = "SELECT * FROM comments WHERE to_article='"+id+"' ORDER BY created DESC;";
+                connection.query( sql, (err, data) =>
+                {
+                    if (err) reject(err);
+                    resolve(data);
+                });
+            });
         }
     };
 }

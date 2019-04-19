@@ -4,47 +4,37 @@ var db = require('../db/articles.db.js')();
 var dbRazdel = require('../db/razdels.db.js')();
 var comments = require('../controllers/comments.js')();
 module.exports = router;
-router.use(function(req, res, next){
-    dbRazdel.getRazdels(true).then(
-        (data)=>{res.razdelMenu = data;
-        next();
-        }, null
-    )
+router.use(async (req, res, next) =>
+{
+    data = await dbRazdel.getRazdels(true);
+    res.razdelMenu = data;
+    next();
+}
 
-});
-router.get( '/razdel/:id', function(req, res)
+);
+router.get( '/razdel/:id', async (req, res) =>
 {
-    db.getArticlesList(req.params.id, function (err, data) {
-        if (err) return;
-        res.render('articles', {articles: data, message: req.flash('msg'),
-            razdelMenu:res.razdelMenu});
-    });
-});
-router.get( '/', function(req, res)
-{
-    db.getArticlesList(-1, function (err, data) {
-        if (err) return;
-        res.render('articles', {articles: data, message: req.flash('msg'),
+    var data = await db.getArticlesList(req.params.id);
+    res.render('articles', {articles: data, message: req.flash('msg'),
         razdelMenu:res.razdelMenu});
-    });
 })
-router.get( '/:id', function(req, res)
+router.get( '/', async (req, res) =>
 {
-    db.getArticle( req.params.id, function( err, article )
-    {
-    if(err, article == undefined) return;
-    comments.getArticleComments(article, function () {
-        res.render('article_view', article);
-    })
-    });
+    var data = await db.getArticlesList(-1)
+    res.render('articles', {articles: data, message: req.flash('msg'),
+    razdelMenu:res.razdelMenu});
+})
+router.get( '/:id', async (req, res)=>
+{
+    var article = await db.getArticle( req.params.id);
+    if(article == undefined) return;
+    article.comments = await comments.getArticleComments(article);
+    res.render('article_view', article);
 });
-
-
-router.get( '/delete/:id', function(req, res)
+router.get( '/delete/:id', (req, res) =>
 {
     db.deleteArticle(req.params.id);
     req.flash('msg', 'статья удалена!');
     res.redirect('/articles');
 });
-
 module.exports = router;

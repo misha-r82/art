@@ -25,6 +25,7 @@ function Db()
                     from articles join razdels on articles.razdel_id = razdels.id 
                     group by razdel_id`;
                 connection.query(sql, function (err, data) {
+                    if (err) reject(err);
                     readRazdels(data);
                     resolve(data);});
             })
