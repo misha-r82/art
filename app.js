@@ -16,7 +16,7 @@ app.set('view options', { layout: 'layouts/main' });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
+app.use(session({ 
     cookie: { maxAge: 24 * 60 * 60 * 1000 },
     store: new FileStore(),
     secret: 'keyboard cat',
@@ -24,6 +24,8 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(require('connect-flash')());
+app.use(require('cors')('dev'));
+app.use(require('morgan')('dev'));
 var passport = require('./autorize/passport.js')(app);
 var index = require('./routes/index');
 var articles = require('./routes/articles');

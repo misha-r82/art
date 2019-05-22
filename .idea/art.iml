@@ -5,6 +5,8 @@
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/Client/blog/dist" />
       <excludeFolder url="file://$MODULE_DIR$/Client/blog/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/Client/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/Client/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
