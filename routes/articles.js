@@ -12,6 +12,11 @@ router.use(async (req, res, next) =>
 }
 
 );
+router.get( '/razdels/', async (req, res) =>
+{
+    var data = await dbRazdel.getRazdels(true);
+    res.json(data);
+})
 router.get( '/razdel/:id', async (req, res) =>
 {
     var data = await db.getArticlesList(req.params.id);
