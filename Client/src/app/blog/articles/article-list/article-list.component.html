@@ -1,0 +1,9 @@
+<h1>{{razdel}}</h1>
+<div id="content">
+  <ul>
+    <li *ngFor="let article of articles">
+      <H2><a href="/articles/{{id}}">{{article.title}}</a></H2>
+      <div>{{article.created}}</div>
+    </li>
+  </ul>
+</div>

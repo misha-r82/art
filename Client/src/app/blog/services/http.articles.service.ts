@@ -6,7 +6,7 @@ export class HttpArticlesService{
 
   constructor(private http: HttpClient){ }
 
-  getData(){
-    return this.http.get('user.json')
+  getData(razdelId : number){
+    return this.http.get(`http://localhost:3000/articles/byRazdel/${razdelId}`);
   }
 }
