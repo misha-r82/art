@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpRazdelsService} from '../../services/http.razdels.service'
 import {Razdel} from "../razdel.model";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-razdels',
   templateUrl: './razdels.component.html',
@@ -8,10 +9,8 @@ import {Razdel} from "../razdel.model";
   providers:[HttpRazdelsService]
 })
 export class RazdelsComponent implements OnInit {
-  private httpRazdelService: HttpRazdelsService;
-
-  constructor(httpRazdelService : HttpRazdelsService) {
-    this.httpRazdelService = httpRazdelService;
+  constructor(private router: Router,
+              private httpRazdelService : HttpRazdelsService) {
   }
   razdels : Razdel[] = [];
   ngOnInit() {
@@ -21,5 +20,9 @@ export class RazdelsComponent implements OnInit {
         this.razdels = data;
 
       });
+  }
+  onSelect(razdel : Razdel)
+  {
+    this.router.navigate(["razdel", razdel.id]);
   }
 }

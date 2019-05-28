@@ -4,7 +4,7 @@
 <ul>
 
 <li *ngFor="let razdel of razdels">
-  <a href="/articles/razdel/{{razdel.id}}">{{razdel.razdel}}</a>
+  <a (click)="onSelect(razdel)">{{razdel.razdel}}></a>
   <span>{{razdel.artCount}}</span>
 </li>
 
