@@ -4,8 +4,8 @@
 <ul>
 
 <li *ngFor="let razdel of razdels">
-  <a (click)="onSelect(razdel)">{{razdel.razdel}}></a>
-  <span>{{razdel.artCount}}</span>
+  <a [routerLink]="['razdel', razdel.razdelId]">{{razdel.razdel}}</a>
+  <span>({{razdel.artCount}})</span>
 </li>
 
 
