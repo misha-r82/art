@@ -7,7 +7,7 @@ var db_config = {
 };
 
 var connection;
-
+var pool = mysql.createPool(db_config);
 function handleDisconnect() {
     connection = mysql.createConnection(db_config);
     connection.connect(function(err) {
@@ -24,5 +24,6 @@ function handleDisconnect() {
         } else throw err;
     });
 }
-handleDisconnect();
-exports.connection = connection;
+//handleDisconnect();
+
+exports.connection = pool;
