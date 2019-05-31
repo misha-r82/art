@@ -16,7 +16,6 @@ export class RazdelsComponent implements OnInit {
   ngOnInit() {
     this.httpRazdelService.getData().subscribe(
       (data: Razdel[]) => {
-        console.log(data);
         this.razdels = data;
 
       });

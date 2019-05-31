@@ -17,10 +17,16 @@ router.get( '/razdels/', async (req, res) =>
     var data = await dbRazdel.getRazdels(true);
     res.json(data);
 })
-router.get('/byRazdel/', async (req, res) =>
+router.get('/byRazdel/:id', async (req, res) =>
 {
     var data = await db.getArticlesList(req.params.id);
     res.json(data);
+})
+router.get('/byId/:id', async (req, res) =>
+{
+    var art = await db.getArticle(req.params.id);
+    art.coments = await db.getCommentsList(art.id);
+    res.json(art);
 })
 router.get( '/razdel/:id', async (req, res) =>
 {

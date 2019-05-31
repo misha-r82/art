@@ -3,7 +3,7 @@
 <div id="content">
   <ul>
     <li *ngFor="let article of articles">
-      <H2><a href="/articles/{{id}}">{{article.title}}</a></H2>
+      <H2><a [routerLink]="['/articles/article', article.id]">{{article.title}}</a></H2>
       <div>{{article.created}}</div>
     </li>
   </ul>

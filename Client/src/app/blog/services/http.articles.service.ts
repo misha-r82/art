@@ -6,7 +6,10 @@ export class HttpArticlesService{
 
   constructor(private http: HttpClient){ }
 
-  getData(razdelId : number){
+  getArtList(razdelId : number){
     return this.http.get(`http://localhost:3000/articles/byRazdel/${razdelId}`);
+  }
+  getArtСontent(artId : number){
+    return this.http.get(`http://localhost:3000/articles/byId/${artId}`);
   }
 }
