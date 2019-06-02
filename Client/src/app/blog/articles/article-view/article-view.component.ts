@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {HttpArticlesService} from "../../services/http.articles.service";
 import {Article} from "../article.model";
@@ -14,7 +14,7 @@ export class ArticleViewComponent implements OnInit {
   }
 
   id: number;
-  article: Article;
+ @Input() article: Article;
 
   ngOnInit() {
     this.id = +this.route.params.subscribe((params: Params) => {

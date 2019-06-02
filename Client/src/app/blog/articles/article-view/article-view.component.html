@@ -13,15 +13,7 @@
       </div>
     </a>
     <textarea id="txtNewComment" rows="3" style='width:100%; padding:0;'></textarea>
-    <div class="commentBody" *ngFor="let comment of article.comments">
-      <div class="commentAuthor">{{comment.author}}</div>
-      <div class="editButton" onclick="editComment()">
-        <img src="/images/edit.png" alt="Редактировать" class="rightButton">
-      </div>
-      <div class="editButton" onclick="deleteComment()">
-        <img src="/images/delete.svg" alt="Удалить" class="rightButton">
-      </div>
-      <div class="commentText" id="commentText{{commentId}}">{{text}}</div>
-    </div>
+    <app-comment *ngFor="let comm of article.comments" [comment]="comm"></app-comment>
+
   </div>
  </section>

@@ -25,7 +25,7 @@ router.get('/byRazdel/:id', async (req, res) =>
 router.get('/byId/:id', async (req, res) =>
 {
     var art = await db.getArticle(req.params.id);
-    art.coments = await db.getCommentsList(art.id);
+    art.comments = await db.getCommentsList(art.id);
     res.json(art);
 })
 router.get( '/razdel/:id', async (req, res) =>
