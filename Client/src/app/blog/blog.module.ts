@@ -7,6 +7,8 @@ import { ArticleListComponent } from './articles/article-list/article-list.compo
 import { ArticleViewComponent } from './articles/article-view/article-view.component';
 import {RouterModule} from "@angular/router";
 import { CommentComponent } from './articles/comment/comment.component';
+import { ArticleComponent } from './articles/article/article.component';
+import { ArticleEditComponent } from './articles/article-edit/article-edit.component';
 
 @NgModule({
   declarations:[
@@ -15,7 +17,9 @@ import { CommentComponent } from './articles/comment/comment.component';
     RazdelsComponent,
     ArticleListComponent,
     ArticleViewComponent,
-    CommentComponent
+    CommentComponent,
+    ArticleComponent,
+    ArticleEditComponent
   ],
   imports:[
   CommonModule, RouterModule

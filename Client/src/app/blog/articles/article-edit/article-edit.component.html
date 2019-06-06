@@ -1,0 +1,21 @@
+<main id="content">
+  <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+  <form action="" method="POST">
+
+    <select name="razdelList">
+      <option *ngFor="let razdel of razdels" value="{{razdel.razdelId}}" [selected] = "razdel.selected">
+      {{razdel.razdel}}
+      </option>
+    </select>
+    <input name="articleId" type="hidden" value="{{article.id}}"/>
+    <input name="title" type="text" value="{{article.title}}"/>
+    <textarea name="editInput" id="editInput" rows="10" cols="80">{{article.text}}</textarea>
+    <input type="submit"  value="Сохранить"/>
+    <input type="button" value="Отмена" />
+  </form>
+  <script>
+    CKEDITOR.replace( 'editInput' );
+  </script>
+
+
+</main>
