@@ -8,7 +8,7 @@ import { ArticleViewComponent } from './articles/article-view/article-view.compo
 import {RouterModule} from "@angular/router";
 import { CommentComponent } from './articles/comment/comment.component';
 import { ArticleEditComponent } from './articles/article-edit/article-edit.component';
-import {CkEditorModule} from "./articles/ckeditor.module";
+import {CkEditorComponent} from "./articles/ckeditor.component";
 
 
 
@@ -21,7 +21,7 @@ import {CkEditorModule} from "./articles/ckeditor.module";
     ArticleViewComponent,
     CommentComponent,
     ArticleEditComponent,
-    CkEditorModule
+    CkEditorComponent
   ],
   imports:[
   CommonModule, RouterModule,

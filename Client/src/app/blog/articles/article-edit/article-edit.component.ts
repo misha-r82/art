@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {Article} from "../article.model";
-import {CkEditorModule} from "../ckeditor.module";
+
 
 @Component({
   selector: 'app-article-edit',

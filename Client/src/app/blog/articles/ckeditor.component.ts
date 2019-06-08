@@ -94,10 +94,4 @@ export class CkEditorComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 }
 
-@NgModule({
-  imports: [],
-  declarations: [CkEditorComponent],
-  providers: [],
-  exports: [CkEditorComponent]
-})
-export class CkEditorModule { }
+
