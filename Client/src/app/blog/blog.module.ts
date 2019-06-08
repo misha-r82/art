@@ -7,8 +7,10 @@ import { ArticleListComponent } from './articles/article-list/article-list.compo
 import { ArticleViewComponent } from './articles/article-view/article-view.component';
 import {RouterModule} from "@angular/router";
 import { CommentComponent } from './articles/comment/comment.component';
-import { ArticleComponent } from './articles/article/article.component';
 import { ArticleEditComponent } from './articles/article-edit/article-edit.component';
+import {CkEditorModule} from "./articles/ckeditor.module";
+
+
 
 @NgModule({
   declarations:[
@@ -18,13 +20,14 @@ import { ArticleEditComponent } from './articles/article-edit/article-edit.compo
     ArticleListComponent,
     ArticleViewComponent,
     CommentComponent,
-    ArticleComponent,
-    ArticleEditComponent
+    ArticleEditComponent,
+    CkEditorModule
   ],
   imports:[
-  CommonModule, RouterModule
+  CommonModule, RouterModule,
 ]
 })
 export class BlogModule {
 
 }
+
