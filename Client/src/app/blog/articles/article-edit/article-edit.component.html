@@ -1,5 +1,5 @@
 <main id="content">
-  <script type="text/javascript" src="scripts/ckeditor/ckeditor.js"></script>
+
   <form action="" method="POST">
 
     <select name="razdelList">
@@ -7,7 +7,6 @@
       {{razdel.razdel}}
       </option>
     </select>
-    <input name="articleId" type="hidden" value="{{article.id}}"/>
     <input name="title" type="text" value="{{article.title}}"/>
     <textarea name="editInput" id="editInput" rows="10" cols="80">{{article.text}}</textarea>
     <app-ckeditor></app-ckeditor>
@@ -16,8 +15,5 @@
     <input type="submit"  value="Сохранить"/>
     <input type="button" value="Отмена" />
   </form>
-  <script>
-    CKEDITOR.replace( 'editInput' );
-  </script>
 
 </main>

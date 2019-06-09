@@ -1,7 +1,21 @@
-import { Component, Input, OnInit, OnDestroy, ViewChild, ElementRef, forwardRef, NgZone, NgModule } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+  forwardRef,
+  NgZone,
+  NgModule,
+  Renderer2, Inject
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import {DOCUMENT} from "@angular/common";
+import {Alert} from "selenium-webdriver";
 
 declare const CKEDITOR;
+
 
 @Component({
   selector: 'app-ckeditor',
@@ -40,11 +54,19 @@ export class CkEditorComponent implements OnInit, OnDestroy, ControlValueAccesso
     }
   }
 
-  constructor(private zone: NgZone) { }
+  constructor(private zone: NgZone, private renderer: Renderer2,
+              @Inject(DOCUMENT) private _document) {
+    const s = this.renderer.createElement('script');
+    s.type = 'text/javascript';
+    s.src = 'https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js';
+    s.text = `console.log("Scrit!")`;
+    s.onload = "() => {console.log(\"OnLoad!\")}";
+    this.renderer.appendChild(this._document.body, s);
+  }
 
   ngOnInit() {
-    this.instance = CKEDITOR.replace(this.editor.nativeElement, this.config);
 
+    this.instance = CKEDITOR.replace(this.editor.nativeElement, this.config);
     this.instance.setData(this._value);
 
     // CKEditor change event
@@ -52,6 +74,34 @@ export class CkEditorComponent implements OnInit, OnDestroy, ControlValueAccesso
       let value = this.instance.getData();
       this.updateValue(value);
     });
+    /*this.loadAPI = new Promise((resolve) => {
+      this.loadScript();
+      resolve(true);
+    });*/
+
+  }
+
+  loadAPI: Promise<any>;
+
+
+  public  loadScript() {
+    let isFound = false;
+    let scripts = document.getElementsByTagName("script")
+    for (let i = 0; i < scripts.length; ++i) {
+      if (scripts[i].getAttribute('src') != null && scripts[i].getAttribute('src').includes("ckeditor")) {
+        isFound = true;
+      }
+    }
+    if (!isFound) {
+      var dynamicScript = "https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js";
+      let node = document.createElement('script');
+      node.src = dynamicScript;
+      node.type = 'text/javascript';
+      node.async = false;
+      node.charset = 'utf-8';
+      console.log(node);
+      document.getElementsByTagName('head')[0].appendChild(node);
+    }
   }
 
   /**
