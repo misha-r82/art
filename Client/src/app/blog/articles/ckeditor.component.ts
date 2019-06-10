@@ -8,7 +8,7 @@ import {
   forwardRef,
   NgZone,
   NgModule,
-  Renderer2, Inject
+  Renderer2, Inject, AfterContentInit
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import {DOCUMENT} from "@angular/common";
@@ -30,7 +30,7 @@ declare const CKEDITOR;
     multi: true
   }]
 })
-export class CkEditorComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class CkEditorComponent implements OnInit, AfterContentInit ,OnDestroy, ControlValueAccessor {
 
 
   @ViewChild('editor') editor: ElementRef;
@@ -53,38 +53,45 @@ export class CkEditorComponent implements OnInit, OnDestroy, ControlValueAccesso
       this.onChange(v);
     }
   }
-
+private loadScript : Promise<void>;
   constructor(private zone: NgZone, private renderer: Renderer2,
               @Inject(DOCUMENT) private _document) {
-    const s = this.renderer.createElement('script');
-    s.type = 'text/javascript';
-    s.src = 'https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js';
-    s.text = `console.log("Scrit!")`;
-    s.onload = "() => {console.log(\"OnLoad!\")}";
-    this.renderer.appendChild(this._document.body, s);
+    this.loadScript = new Promise(
+      resolve => {
+        const s = this.renderer.createElement('script');
+        s.type = 'text/javascript';
+        s.src = 'https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js';
+        s.onload = resolve;
+        this.renderer.appendChild(this._document.body, s);
+
+      }
+    )
+
+    //
+    //console.log("ConstructorEND!!!")
   }
+init()
+{
+  //console.log("Init!!!");
+  this.instance = CKEDITOR.replace(this.editor.nativeElement, this.config);
+  this.instance.setData(this._value);
 
-  ngOnInit() {
-
-    this.instance = CKEDITOR.replace(this.editor.nativeElement, this.config);
-    this.instance.setData(this._value);
-
-    // CKEditor change event
-    this.instance.on('change', () => {
-      let value = this.instance.getData();
-      this.updateValue(value);
-    });
-    /*this.loadAPI = new Promise((resolve) => {
-      this.loadScript();
-      resolve(true);
-    });*/
-
-  }
-
-  loadAPI: Promise<any>;
+  // CKEditor change event
+  this.instance.on('change', () => {
+    let value = this.instance.getData();
+    this.updateValue(value);
+  });
 
 
-  public  loadScript() {
+}
+ngOnInit() {
+this.loadScript.then(()=>this.init());
+}
+
+
+
+
+ /* public  loadScript() {
     let isFound = false;
     let scripts = document.getElementsByTagName("script")
     for (let i = 0; i < scripts.length; ++i) {
@@ -102,7 +109,7 @@ export class CkEditorComponent implements OnInit, OnDestroy, ControlValueAccesso
       console.log(node);
       document.getElementsByTagName('head')[0].appendChild(node);
     }
-  }
+  }*/
 
   /**
    * Value update process
@@ -141,6 +148,14 @@ export class CkEditorComponent implements OnInit, OnDestroy, ControlValueAccesso
         this.instance = null;
       });
     }
+  }
+
+  ngAfterContentInit(): void {
+    this.init();
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+
   }
 }
 

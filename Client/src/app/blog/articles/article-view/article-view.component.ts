@@ -22,7 +22,6 @@ export class ArticleViewComponent implements OnInit {
       var data = this.httpArtService.getArtList(this.id);
       this.httpArtService.getArtСontent(this.id).subscribe(
         (data: Article) => {
-          console.log(data);
           this.article = data;
         });
     });
