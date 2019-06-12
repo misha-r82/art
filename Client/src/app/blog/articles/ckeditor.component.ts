@@ -7,16 +7,12 @@ import {
   ElementRef,
   forwardRef,
   NgZone,
-  NgModule,
-  Renderer2, Inject, AfterContentInit
+  Renderer2, Inject
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import {DOCUMENT} from "@angular/common";
-import {Alert} from "selenium-webdriver";
 
 declare const CKEDITOR;
-
-
 @Component({
   selector: 'app-ckeditor',
   template: `
@@ -30,8 +26,7 @@ declare const CKEDITOR;
     multi: true
   }]
 })
-export class CkEditorComponent implements OnInit, AfterContentInit ,OnDestroy, ControlValueAccessor {
-
+export class CkEditorComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @ViewChild('editor') editor: ElementRef;
 
@@ -39,10 +34,7 @@ export class CkEditorComponent implements OnInit, AfterContentInit ,OnDestroy, C
 
   instance: any;
 
-  config = {
-    uiColor: '#F0F3F4',
-    height: '100%'
-  };
+  config = { height: '100%' };
 
   private _value = '';
 
@@ -63,19 +55,15 @@ private loadScript : Promise<void>;
         s.src = 'https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js';
         s.onload = resolve;
         this.renderer.appendChild(this._document.body, s);
-
+        console.log("Constructor end!!!");
       }
     )
-
-    //
-    //console.log("ConstructorEND!!!")
   }
 init()
 {
   //console.log("Init!!!");
   this.instance = CKEDITOR.replace(this.editor.nativeElement, this.config);
   this.instance.setData(this._value);
-
   // CKEditor change event
   this.instance.on('change', () => {
     let value = this.instance.getData();
@@ -84,36 +72,11 @@ init()
 
 
 }
+
 ngOnInit() {
 this.loadScript.then(()=>this.init());
 }
 
-
-
-
- /* public  loadScript() {
-    let isFound = false;
-    let scripts = document.getElementsByTagName("script")
-    for (let i = 0; i < scripts.length; ++i) {
-      if (scripts[i].getAttribute('src') != null && scripts[i].getAttribute('src').includes("ckeditor")) {
-        isFound = true;
-      }
-    }
-    if (!isFound) {
-      var dynamicScript = "https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js";
-      let node = document.createElement('script');
-      node.src = dynamicScript;
-      node.type = 'text/javascript';
-      node.async = false;
-      node.charset = 'utf-8';
-      console.log(node);
-      document.getElementsByTagName('head')[0].appendChild(node);
-    }
-  }*/
-
-  /**
-   * Value update process
-   */
   updateValue(value: any) {
     this.zone.run(() => {
       this.value = value;
@@ -122,9 +85,6 @@ this.loadScript.then(()=>this.init());
     });
   }
 
-  /**
-   * Implements ControlValueAccessor
-   */
   writeValue(value: any) {
     console.log('writeValue');
     this._value = value;
@@ -137,8 +97,6 @@ this.loadScript.then(()=>this.init());
   registerOnChange(fn: any) { this.onChange = fn; }
   registerOnTouched(fn: any) { this.onTouched = fn; }
 
-
-
   ngOnDestroy() {
     if (this.instance) {
       setTimeout(() => {
@@ -149,13 +107,7 @@ this.loadScript.then(()=>this.init());
       });
     }
   }
-
-  ngAfterContentInit(): void {
-    this.init();
-  }
-
   setDisabledState(isDisabled: boolean): void {
-
   }
 }
 

@@ -1,6 +1,6 @@
 <main id="content">
   <h1>Статья - {{article.title}}</h1>
-  <div id="article_view">{{article.text}}</div>
+  <div class="e2e-inner-html-bound" id="article_view" [innerHTML]="article.text"></div>
     <div id="commentsContainer">
   </div>
 </main>

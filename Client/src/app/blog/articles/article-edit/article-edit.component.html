@@ -8,12 +8,11 @@
       </option>
     </select>
     <input name="title" type="text" value="{{article.title}}"/>
-    <textarea name="editInput" id="editInput" rows="10" cols="80">{{article.text}}</textarea>
-    <app-ckeditor></app-ckeditor>
+    <app-ckeditor [value]="article.text"></app-ckeditor>
 
 
     <input type="submit"  value="Сохранить"/>
     <input type="button" value="Отмена" />
   </form>
-
+  <app-comment *ngFor="let comm of article.comments" [comment]="comm"></app-comment>
 </main>
