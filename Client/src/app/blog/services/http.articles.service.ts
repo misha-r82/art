@@ -11,5 +11,13 @@ export class HttpArticlesService{
   }
   getArtСontent(artId : number){
     return this.http.get(`http://localhost:3000/articles/byId/${artId}`);
+
+  }
+  addComment(comment:Comment)
+  {
+    return this.http.post(`http://localhost:3000/comments/add/`, comment);
+  }
+  delComment(id:number){
+    return this.http.post(`http://localhost:3000/comments/delete/`, {commentId : id});
   }
 }

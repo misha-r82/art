@@ -10,13 +10,11 @@ router.post( '/add/', function(req, res)
     var article = { id : req.body.id};
     var text = req.body.text;
     comments.newComment(article, text, function ( err, data) {
-        data.layout = false;
-        res.render('partials/comment', data, function (err, html) {
-            var result = {sucess: true, html: html};
-            res.send(JSON.stringify(result));
-        }); });
+     res.send("ok");
+
 
 });
+
 router.post('/delete/', function (req,res)
 {
     db.deleteComment(req.body.commentId, function (err, data)
