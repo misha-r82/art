@@ -7,12 +7,13 @@ module.exports = router;
 'use strict';
 router.post( '/add/', function(req, res)
 {
-    var article = { id : req.body.id};
+    var article = { id : req.body.articleID}
     var text = req.body.text;
-    comments.newComment(article, text, function ( err, data) {
-     res.send("ok");
+    console.log(req.body);
+    comments.newComment(req.body.commentId, req.body.commentText, function ( err, data) {
+        res.send("ok");
 
-
+    })
 });
 
 router.post('/delete/', function (req,res)

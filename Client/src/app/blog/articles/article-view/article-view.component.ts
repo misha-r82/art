@@ -10,11 +10,17 @@ import {Article} from "../article.model";
 })
 export class ArticleViewComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private httpArtService: HttpArticlesService) {
-  }
+  constructor(private route: ActivatedRoute,
+              private httpArtService: HttpArticlesService) {  }
 
   id: number;
  @Input() article: Article;
+ commentText : string;
+  AddCommentClick()
+  {
+    let data = {"articleId":this.id, "commentText" : this.commentText};
+    this.httpArtService.addComment(data).subscribe((data)=>console.log(data));
+  }
 
   ngOnInit() {
     this.id = +this.route.params.subscribe((params: Params) => {

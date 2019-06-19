@@ -13,7 +13,7 @@ export class HttpArticlesService{
     return this.http.get(`http://localhost:3000/articles/byId/${artId}`);
 
   }
-  addComment(comment:Comment)
+  addComment(comment:any)
   {
     return this.http.post(`http://localhost:3000/comments/add/`, comment);
   }
