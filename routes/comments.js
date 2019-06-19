@@ -7,10 +7,8 @@ module.exports = router;
 'use strict';
 router.post( '/add/', function(req, res)
 {
-    var article = { id : req.body.articleID}
-    var text = req.body.text;
     console.log(req.body);
-    comments.newComment(req.body.commentId, req.body.commentText, function ( err, data) {
+    comments.newComment(req.body.articleId, req.body.commentText, function ( err, data) {
         res.send("ok");
 
     })

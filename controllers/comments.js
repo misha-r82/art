@@ -28,9 +28,9 @@ module.exports = function()
     return {
         // добавляет к статье массив комментариев
     getArticleComments: getArticleComments,
-    newComment: function(article, text ,callback)
+    newComment: function(articleId, text ,callback)
     {
-        db.addComment(article.id, 'user', text, function (err, data) {
+        db.addComment(articleId, 'user', text, function (err, data) {
            callback(err, data);
         });
     }

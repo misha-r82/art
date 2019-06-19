@@ -9,6 +9,7 @@ import {RouterModule} from "@angular/router";
 import { CommentComponent } from './articles/comment/comment.component';
 import { ArticleEditComponent } from './articles/article-edit/article-edit.component';
 import {CkEditorComponent} from "./articles/ckeditor.component";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -24,7 +25,7 @@ import {CkEditorComponent} from "./articles/ckeditor.component";
     CkEditorComponent
   ],
   imports:[
-  CommonModule, RouterModule,
+  CommonModule, RouterModule, FormsModule
 ]
 })
 export class BlogModule {

@@ -12,7 +12,7 @@
         <img src="assets/images/add.png" class="rightButton">
       </div>
     </a>
-    <textarea id="txtNewComment" rows="3" ([innerText])="commentText" ></textarea>
+    <textarea id="txtNewComment" rows="3" [(ngModel)]="commentText" ></textarea>
     <app-comment *ngFor="let comm of article.comments" [comment]="comm"></app-comment>
   </div>
  </section>

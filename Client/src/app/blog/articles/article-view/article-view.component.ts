@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {HttpArticlesService} from "../../services/http.articles.service";
 import {Article} from "../article.model";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-article-view',
@@ -11,22 +12,23 @@ import {Article} from "../article.model";
 export class ArticleViewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-              private httpArtService: HttpArticlesService) {  }
+              private httpArtService: HttpArticlesService) { }
 
-  id: number;
  @Input() article: Article;
- commentText : string;
+  commentText : string;
   AddCommentClick()
   {
-    let data = {"articleId":this.id, "commentText" : this.commentText};
-    this.httpArtService.addComment(data).subscribe((data)=>console.log(data));
+    let data = {articleId:this.article.id, commentText : this.commentText};
+    console.log(JSON.stringify(data));
+    this.httpArtService.addComment(data).subscribe((data)=>{
+    });//console.log(data));
   }
 
   ngOnInit() {
-    this.id = +this.route.params.subscribe((params: Params) => {
-      this.id = +params["id"];
-      var data = this.httpArtService.getArtList(this.id);
-      this.httpArtService.getArtСontent(this.id).subscribe(
+    let id = +this.route.params.subscribe((params: Params) => {
+      id = +params["id"];
+      var data = this.httpArtService.getArtList(id);
+      this.httpArtService.getArtСontent(id).subscribe(
         (data: Article) => {
           this.article = data;
         });
