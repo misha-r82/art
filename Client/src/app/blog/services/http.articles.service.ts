@@ -18,6 +18,8 @@ export class HttpArticlesService{
     return this.http.post(`http://localhost:3000/comments/add/`, data);
   }
   delComment(id:number){
-    return this.http.post(`http://localhost:3000/comments/delete/`, {commentId : id});
+    console.log(id);
+    return this.http.post(`http://localhost:3000/comments/delete/`,
+      {commentId : id, comment : "123"});
   }
 }

@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {HttpArticlesService} from "../../services/http.articles.service";
 import {Article} from "../article.model";
-import {FormsModule} from "@angular/forms";
+import {Comment} from "../comment.model";
 
 @Component({
   selector: 'app-article-view',
@@ -19,11 +19,19 @@ export class ArticleViewComponent implements OnInit {
   AddCommentClick()
   {
     let data = {articleId:this.article.id, commentText : this.commentText};
-    console.log(JSON.stringify(data));
-    this.httpArtService.addComment(data).subscribe((data)=>{
-    });//console.log(data));
+    this.httpArtService.addComment(data).subscribe((comment : any)=>{
+      this.article.comments.push(comment);
+    });
   }
+  onDelete(comment : Comment) {
+    console.log(comment);
+    this.httpArtService.delComment(comment.commentId).subscribe((comment: any) => {
 
+      var index = this.article.comments.indexOf(comment);
+      if (index > -1)
+        this.article.comments.splice(index, 1);
+   })
+  }
   ngOnInit() {
     let id = +this.route.params.subscribe((params: Params) => {
       id = +params["id"];

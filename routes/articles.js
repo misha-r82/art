@@ -25,7 +25,7 @@ router.get('/byRazdel/:id', async (req, res) =>
 router.get('/byId/:id', async (req, res) =>
 {
     var art = await db.getArticle(req.params.id);
-    art.comments = await db.getCommentsList(art.id);
+    art.comments = await comments.getArticleComments(art.id);
     res.json(art);
 })
 router.get( '/razdel/:id', async (req, res) =>
@@ -44,7 +44,7 @@ router.get( '/:id', async (req, res)=>
 {
     var article = await db.getArticle( req.params.id);
     if(article == undefined) return;
-    article.comments = await comments.getArticleComments(article);
+    article.comments = await comments.getArticleComments(article.id);
     res.render('article_view', article);
 });
 router.get( '/delete/:id', (req, res) =>

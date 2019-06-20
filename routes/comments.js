@@ -5,13 +5,10 @@ var db = require('../db/articles.db.js')();
 var hbs = require('hbs');
 module.exports = router;
 'use strict';
-router.post( '/add/', function(req, res)
+router.post( '/add/', async function(req, res)
 {
-    console.log(req.body);
-    comments.newComment(req.body.articleId, req.body.commentText, function ( err, data) {
-        res.send("ok");
-
-    })
+    let comment = await comments.newComment(req.body.articleId, req.body.commentText);
+    res.send(comment);
 });
 
 router.post('/delete/', function (req,res)

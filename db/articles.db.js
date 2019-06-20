@@ -80,14 +80,9 @@ function Db()
         {
             return new Promise(function(resolve, reject) {
                 var sql = "INSERT INTO comments (to_article, text, author) VALUES ('" + id + "','" + text + "','" + author + "');";
-                connection.query(sql, (err, data) => {
-                    var comment = {
-                        "commentId": data.insertId,
-                        "author": author,
-                        "text": text,
-                    }
+                connection.query(sql, (err, results, fields) => {
                     if (err) reject(err);
-                    resolve(comment);
+                    resolve(results.insertId);
                 });
             });
         },
@@ -115,7 +110,17 @@ function Db()
             })
         },
 
-
+        getComment: (id) =>
+        {
+            return new Promise(function(resolve, reject) {
+                var sql = "SELECT * FROM comments WHERE id='"+id+"'";
+                connection.query( sql, (err, data) =>
+                {
+                    if (err) reject(err);
+                    resolve(data);
+                });
+            });
+        },
         getCommentsList: (id) =>
         {
             return new Promise(function(resolve, reject) {

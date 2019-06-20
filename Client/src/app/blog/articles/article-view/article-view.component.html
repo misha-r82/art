@@ -13,6 +13,7 @@
       </div>
     </a>
     <textarea id="txtNewComment" rows="3" [(ngModel)]="commentText" ></textarea>
-    <app-comment *ngFor="let comm of article.comments" [comment]="comm"></app-comment>
+    <app-comment *ngFor="let comm of article.comments" [comment]="comm"
+    (onDelete)="onDelete($event)"></app-comment>
   </div>
  </section>
