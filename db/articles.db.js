@@ -86,7 +86,7 @@ function Db()
                 });
             });
         },
-        deleteComment: function (id, callback) {
+        deleteComment: function (id) {
             return new Promise(function (resolve, reject) {
                 var sql = `DELETE FROM comments WHERE id='${id}';`;
                 connection.query(sql, (err, data) => {
@@ -98,13 +98,13 @@ function Db()
         updateComment: function( comment )
         {
             return new Promise(function(resolve, reject) {
-                var sql = `UPDATE comments SET text = '${comment.text}' WHERE id='${comment.id}'`;
+                var sql = `UPDATE comments SET text = '${comment.text}' WHERE id='${comment.commentId}'`;
                 connection.query( sql, function (err) {
                     if (err) return err;
-                    sql = `SELECT text FROM comments WHERE id ='${comment.id}'`;
+                    sql = `SELECT * FROM comments WHERE id ='${comment.commentId}'`;
                     connection.query( sql, function (err, data) {
                         if (err) reject(err);
-                        resolve(data[0]['text']);
+                        resolve(data[0]);
                     })
                 } );
             })

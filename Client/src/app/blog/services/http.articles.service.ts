@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Comment} from "../articles/comment.model";
 
 @Injectable()
 export class HttpArticlesService{
@@ -17,9 +18,13 @@ export class HttpArticlesService{
   {
     return this.http.post(`http://localhost:3000/comments/add/`, data);
   }
+  updateComment(data:Comment)
+  {
+    console.log(JSON.stringify(data));
+    return this.http.post(`http://localhost:3000/comments/update/`, JSON.stringify(data));
+  }
   delComment(id:number){
-    console.log(id);
     return this.http.post(`http://localhost:3000/comments/delete/`,
-      {commentId : id, comment : "123"});
+      {commentId : id});
   }
 }

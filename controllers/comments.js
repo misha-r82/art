@@ -32,11 +32,16 @@ module.exports = function()
         var comment = readComment(data[0]);
         return comment;
     };
-
+    async function updateComment(comment)
+    {
+        var comment = await db.updateComment(comment);
+        return comment;
+    }
     return {
         // добавляет к статье массив комментариев
     getArticleComments: getArticleComments,
-    newComment: newComent
+    newComment: newComent,
+    updateComment : updateComment
     }
 
 };

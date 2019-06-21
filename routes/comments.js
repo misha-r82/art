@@ -11,20 +11,16 @@ router.post( '/add/', async function(req, res)
     res.send(comment);
 });
 
-router.post('/delete/', function (req,res)
+router.post('/delete/', async (req,res) =>
 {
-    db.deleteComment(req.body.commentId, function (err, data)
-    {
-        var result = {"sucess" : data.affectedRows == 1};
-        res.send(JSON.stringify(result));
-    })
+    var data = await db.deleteComment(req.body.commentId)
+    var result = {"sucess" : data.affectedRows == 1};
+    res.send(JSON.stringify(result));
 });
-router.post('/edit/', function (req,res)
+router.post('/update/', async (req,res) =>
 {
-    var comment = { id:req.body.id, text:req.body.text};
-    db.updateComment(comment, function (err, data)
-        {
-            res.send(data);
-        });
+    comments.updateComment(req.body);
+    var data = await comments.updateComment(comment);
+    res.send(data);
 });
 module.exports = router;

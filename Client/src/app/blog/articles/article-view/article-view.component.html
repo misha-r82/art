@@ -6,7 +6,7 @@
 </main>
 <section id="comments">
   <div>
-    <a id="btnNewComment" (click)="AddCommentClick()">
+    <a id="btnNewComment" (click)="addCommentClick()">
       <div>
         <div class="buttonText">Добавить комментарий</div>
         <img src="assets/images/add.png" class="rightButton">
@@ -14,6 +14,6 @@
     </a>
     <textarea id="txtNewComment" rows="3" [(ngModel)]="commentText" ></textarea>
     <app-comment *ngFor="let comm of article.comments" [comment]="comm"
-    (onDelete)="onDelete($event)"></app-comment>
+    (onDelete)="onDelete($event)" (onEndEdit)="onEndEdit($event)"></app-comment>
   </div>
  </section>

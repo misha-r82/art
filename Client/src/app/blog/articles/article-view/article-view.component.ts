@@ -12,21 +12,27 @@ import {Comment} from "../comment.model";
 export class ArticleViewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-              private httpArtService: HttpArticlesService) { }
+              private httpArtService: HttpArticlesService) {
+  }
 
- @Input() article: Article;
-  commentText : string;
-  AddCommentClick()
-  {
-    let data = {articleId:this.article.id, commentText : this.commentText};
-    this.httpArtService.addComment(data).subscribe((comment : any)=>{
+  @Input() article: Article;
+  commentText: string;
+
+  addCommentClick() {
+    let data = {articleId: this.article.id, commentText: this.commentText};
+    this.httpArtService.addComment(data).subscribe((comment: Comment) => {
       this.article.comments.push(comment);
     });
   }
-  onDelete(comment : Comment) {
-    console.log(comment);
-    this.httpArtService.delComment(comment.commentId).subscribe((comment: any) => {
 
+  onEndEdit(comment: Comment)
+  {
+    this.httpArtService.updateComment(comment);
+  }
+  onDelete(comment : Comment) {
+    this.httpArtService.delComment(comment.commentId).subscribe((result: any) => {
+      if (result == undefined) return;
+      if (!result["sucess"]) return;
       var index = this.article.comments.indexOf(comment);
       if (index > -1)
         this.article.comments.splice(index, 1);

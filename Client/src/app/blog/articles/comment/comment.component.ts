@@ -10,13 +10,27 @@ export class CommentComponent implements OnInit {
 
   constructor() { }
   @Output() onDelete = new EventEmitter<Comment>();
-
+  @Output() onEndEdit = new EventEmitter<Comment>();
   @Input() comment : Comment;
-
+  isEditing : boolean;
   ngOnInit() {
   }
 
   DeleteCommentClick() {
     this.onDelete.emit(this.comment);
+  }
+  EditCommentClick()
+  {
+    this.isEditing = true;
+  }
+  editCanselClick()
+  {
+    this.isEditing = false;
+
+  }
+  editOkClick()
+  {
+    this.isEditing = false;
+    this.onEndEdit.emit(this.comment);
   }
 }
