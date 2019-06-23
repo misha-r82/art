@@ -27,7 +27,9 @@ export class ArticleViewComponent implements OnInit {
 
   onEndEdit(comment: Comment)
   {
-    this.httpArtService.updateComment(comment);
+    this.httpArtService.updateComment(comment).subscribe((result) =>{
+
+    })
   }
   onDelete(comment : Comment) {
     this.httpArtService.delComment(comment.commentId).subscribe((result: any) => {

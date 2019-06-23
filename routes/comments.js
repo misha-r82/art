@@ -19,8 +19,7 @@ router.post('/delete/', async (req,res) =>
 });
 router.post('/update/', async (req,res) =>
 {
-    comments.updateComment(req.body);
-    var data = await comments.updateComment(comment);
+    var data = await comments.updateComment(req.body);
     res.send(data);
 });
 module.exports = router;
