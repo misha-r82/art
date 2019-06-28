@@ -19,14 +19,10 @@ export class HttpArticlesService{
 
     return this.http.post(`http://localhost:3000/comments/add/`, data);
   }
-  updateComment(data:any)
+  updateComment(comment:Comment)
   {
     console.log("update");
-    return this.http.post(`http://localhost:3000/comments/update/`, {});
-
-    let comment = {"commentId":"1"};
-      return this.http.post(`http://localhost:3000/comments/update/`, comment);
-
+    return this.http.post(`http://localhost:3000/comments/update/`, comment);
   }
   delComment(id:number){
     return this.http.post(`http://localhost:3000/comments/delete/`,

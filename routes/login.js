@@ -38,8 +38,7 @@ module.exports = function(app)
                     res.redirect('/');
                 });
             })(req, res, next);
-        }
-    );
-    return router;
+        })
 }
+
 

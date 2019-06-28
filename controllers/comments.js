@@ -34,7 +34,7 @@ module.exports = function()
     };
     async function updateComment(comment)
     {
-        var comment = await db.updateComment(comment);
+        var comment = await db.updateComment(JSON.toString(comment));
         return comment;
     }
     return {

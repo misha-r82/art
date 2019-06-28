@@ -10,6 +10,7 @@ import { CommentComponent } from './articles/comment/comment.component';
 import { ArticleEditComponent } from './articles/article-edit/article-edit.component';
 import {CkEditorComponent} from "./articles/ckeditor.component";
 import {FormsModule} from "@angular/forms";
+import { AdminMenuComponent } from './admin/admin-menu/admin-menu.component';
 
 
 
@@ -22,7 +23,8 @@ import {FormsModule} from "@angular/forms";
     ArticleViewComponent,
     CommentComponent,
     ArticleEditComponent,
-    CkEditorComponent
+    CkEditorComponent,
+    AdminMenuComponent
   ],
   imports:[
   CommonModule, RouterModule, FormsModule

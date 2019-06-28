@@ -21,7 +21,7 @@ export class ArticleViewComponent implements OnInit {
   addCommentClick() {
     let data = {articleId: this.article.id, commentText: this.commentText};
     this.httpArtService.addComment(data).subscribe((comment: Comment) => {
-      this.article.comments.push(comment);
+      this.article.comments.unshift(comment);
     });
   }
 
