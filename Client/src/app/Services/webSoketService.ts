@@ -9,9 +9,12 @@ export class WebsocketService {
 
   // Our socket connection
   private socket;
-
-  constructor(private uri : string) { }
-
+  private uri : string;
+  constructor() { }
+init(uri:string)
+{
+  this.uri = uri;
+}
   connect(): Subject<MessageEvent> {
     this.socket = io(this.uri);
 

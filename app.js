@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/articles', articles);
 app.use('/comments', comments);
-app.use('/login', require('./routes/login')(app));
+//app.use('/login', require('./routes/login')(app));
 app.use('/admin/articles', articlesAdmin);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

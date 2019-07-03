@@ -7,7 +7,30 @@
 var app = require('../app');
 var debug = require('debug')('art:server');
 var http = require('http');
-var io = require('socket.io')(http);
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+var io = require('socket.io').listen(server,  {
+  extraHeaders: {
+    'Access-Control-Allow-Credentials': 'omit'
+  }
+});
+io.set( 'origins', '*:*' );
+
 app.io = io;
 /**
  * Get port from environment and store in Express.
@@ -30,23 +53,6 @@ io.on("connection", socket => {
     io.emit("message", { type: "new-message", text: message });
   });
 });
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
-var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
 /**
  * Normalize a port into a number, string, or false.
  */
