@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import {WsAuthService} from "./ws.auth.service";
+import {AuthService} from "./auth.service";
 import {WebsocketService} from "../Services/webSoketService";
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
-  providers: [WebsocketService, WsAuthService]
+  providers: [WebsocketService, AuthService]
 })
 export class AuthComponent implements OnInit {
 
-  constructor(private wsAuthService : WsAuthService) { }
+  constructor(private wsAuthService : AuthService) { }
 
   ngOnInit() {  }
 
   testClick() {
     this.wsAuthService.sendMsg("123");
+  }
+  vkClick()
+  {
+    console.log("Click");
+    this.wsAuthService.authVk();
+
   }
 }
