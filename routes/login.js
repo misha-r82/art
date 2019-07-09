@@ -3,19 +3,15 @@ module.exports = function(app)
     var express = require("express");
     var router = express.Router();
     var passport = require('../autorize/passport')(app);
-    app.get('/auth/vk',
-        passport.authenticate('vkontakte', {
+    app.get('/auth/vk'/*,
+       passport.authenticate('vkontakte', {
             scope: ['email']
-        }),
-        function (req, res) {
-            // The request will be redirected to vk.com
-            // for authentication, so
-            // this function will not be called.
-        });
-    app.get('/auth/vk/callback',
+        })*/, (req, res) => {});
+    app.get('/auth/vk/callback'/*,
+
         passport.authenticate('vkontakte', {
             failureRedirect: '/login'
-        }),
+        })*/,
         function (req, res) {
             res.redirect('/');
         });
