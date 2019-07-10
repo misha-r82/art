@@ -3,17 +3,17 @@ module.exports = function(app)
     var express = require("express");
     var router = express.Router();
     var passport = require('../autorize/passport')(app);
-    app.get('/auth/vk'/*,
+    app.get('/auth/vk',
        passport.authenticate('vkontakte', {
             scope: ['email']
-        })*/, (req, res) => {});
-    app.get('/auth/vk/callback'/*,
+        }), (req, res) => {});
+    app.get('/auth/vk/callback',
 
         passport.authenticate('vkontakte', {
             failureRedirect: '/login'
-        })*/,
+        }),
         function (req, res) {
-            res.redirect('/');
+            res.redirect('http://localhost:4200/login/');
         });
 
     router.get('/', async function(req, res, next)
@@ -35,6 +35,7 @@ module.exports = function(app)
                 });
             })(req, res, next);
         })
+    return router;
 }
 
 

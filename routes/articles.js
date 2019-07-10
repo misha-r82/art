@@ -3,7 +3,6 @@ var router = express.Router();
 var db = require('../db/articles.db.js')();
 var dbRazdel = require('../db/razdels.db.js')();
 var comments = require('../controllers/comments.js')();
-module.exports = router;
 router.use(async (req, res, next) =>
 {
     data = await dbRazdel.getRazdels(true);
