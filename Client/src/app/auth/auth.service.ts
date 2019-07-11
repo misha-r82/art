@@ -18,12 +18,17 @@ export class AuthService {
         return response;
       })*/
   }
-  authVk()
+  logOut()
   {
     this.io.subscribe((data)=>{
       this.io.unsubscribe();
       console.log(data)
     });
+    this.io.next({"action" : "logout"});
+  }
+  authVk()
+  {
+
     return this.http.get(`http://localhost:3000/auth/vk`);
 
 

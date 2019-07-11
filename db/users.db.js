@@ -11,7 +11,7 @@ function Db()
                 var sql = `SELECT id, userName, sotialId, photoURL, created FROM  \`users\` 
             WHERE sotialId='${sotialId}' AND profileId ='${profileId}';`;
                 connection.query(sql, function (err, data) {
-                    if (err || data.length < 1 || data == undefined) reject();
+                    if (err || data == undefined || data.length < 1) reject();
                     resolve(data[0]);
                 });
             })
