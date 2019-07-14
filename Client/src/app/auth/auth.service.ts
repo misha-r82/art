@@ -10,21 +10,22 @@ export class AuthService {
 
   // Our constructor calls our wsService connect method
   constructor(private wsService: WebsocketService, private http: HttpClient) {
-    this.wsService.init("http://localhost:3000/");
-    this.io = <Subject<any>>wsService.connect();
-    //this.io.subscribe((data)=>console.log(data));
-
-      /*.map((response: any): any => {
-        return response;
-      })*/
+    //this.wsService.init("http://localhost:3000/");
+    //this.io = <Subject<any>>wsService.connect();
   }
   logOut()
   {
-    this.io.subscribe((data)=>{
+    /*this.io.subscribe((data)=>{
       this.io.unsubscribe();
       console.log(data)
     });
-    this.io.next({"action" : "logout"});
+    this.io.next({"action" : "logout"});*/
+    this.http.get(`http://localhost:3000/login/logout/`).subscribe(
+      (data)=>
+      {
+        console.log(data);
+      }
+    )
   }
   authVk()
   {
