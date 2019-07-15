@@ -7,7 +7,7 @@ import {HttpClient} from "@angular/common/http";
 export class AuthService {
 
   io: Subject<any>;
-
+  userName:string;
   // Our constructor calls our wsService connect method
   constructor(private wsService: WebsocketService, private http: HttpClient) {
     //this.wsService.init("http://localhost:3000/");
@@ -24,6 +24,8 @@ export class AuthService {
       (data)=>
       {
         console.log(data);
+        if (data["status"] != "ok") return;
+        this.userName = "";
       }
     )
   }
@@ -34,8 +36,7 @@ export class AuthService {
 
 
   }
-  // Our simplified interface for sending
-  // messages back to our socket.io server
+
   sendMsg(msg) {
     this.io.next(msg);
   }

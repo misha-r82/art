@@ -15,7 +15,11 @@ module.exports = function(app)
         function (req, res) {
             res.redirect('http://localhost:4200/login/');
         });
-
+    router.get('/logout/', (req, res)=>
+    {
+        req.logout();
+        res.send("{\"status\":\"ok\"}");
+    })
     router.get('/', async function(req, res, next)
     {
         res.render('login');
