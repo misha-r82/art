@@ -26,7 +26,7 @@ module.exports = function(app)
     })
         router.get('/getUser', function (req, res) {
             if(req.user == undefined) res.send({});
-            else res.send({ "userName": req.user.username, "isAdmin": req.user.isAdmin});
+            else res.send({ "userName": req.user.userName, "isAdmin": req.user.isAdmin});
 
         })
     .post('/', function (req, res, next)

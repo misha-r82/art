@@ -24,7 +24,7 @@ export class AuthService {
       console.log(data)
     });
     this.io.next({"action" : "logout"});*/
-    this.http.get(`http://localhost:3000/login/logout/`).subscribe(
+    this.http.get(`http://localhost:3000/login/logout/`,{ withCredentials: true }).subscribe(
       (data)=>
       {
         console.log(data);

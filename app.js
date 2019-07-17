@@ -32,16 +32,23 @@ var articles = require('./routes/articles');
 var articlesAdmin = require('./routes/admin/articles');
 var comments = require('./routes/comments');
 
-var corsOptions = {
-    origin: '*',
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": true,
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+const cors = require('cors');
+const whitelist = ['http://localhost:4200'];
+const corsOptions = {
+    credentials: true, // This is important.
+    origin: (origin, callback) => {
+        //if(whitelist.includes(origin))
+            return callback(null, true)
+
+        //callback(new Error('Not allowed by CORS'));
+    }
 }
-var cors = require('cors');
 app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'public')));
-app.options('*',cors());
+app.options('*',(req, res)=>
+{
+
+});
 app.use('/', index);
 app.use('/articles', articles);
 app.use('/comments', comments);
