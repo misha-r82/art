@@ -24,7 +24,7 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(require('connect-flash')());
-app.use(require('cors')('dev'));
+
 app.use(require('morgan')('dev'));
 var passport = require('./autorize/passport.js')(app);
 var index = require('./routes/index');
@@ -32,9 +32,16 @@ var articles = require('./routes/articles');
 var articlesAdmin = require('./routes/admin/articles');
 var comments = require('./routes/comments');
 
-
+var corsOptions = {
+    origin: '*',
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": true,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+var cors = require('cors');
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.options('*',cors());
 app.use('/', index);
 app.use('/articles', articles);
 app.use('/comments', comments);
