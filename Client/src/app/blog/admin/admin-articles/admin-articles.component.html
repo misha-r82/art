@@ -1,0 +1,25 @@
+<h1>Статьи</h1>
+<a href="/admin/articles/add/" class="rightPanel">
+  <div class="buttonText">Создать статью</div>
+  <img src="/images/add.png" alt="Создать" class="rightButton">
+
+</a>
+<div class="clr"></div>
+<div id="content">
+  <table width="100%">
+
+    <tr *ngFor="let article of articles">
+      <td>
+        <H2><a [routerLink]="['/articles/article', article.id]">{{article.title}}</a></H2>
+      </td>
+      <!--<td width="60px">
+        <a href="articles/delete/{{id}}">
+          <img src="/images/delete.svg" alt="Удалить" class="rightButton">
+        </a>
+        <a href="articles/edit/{{id}}">
+          <img src="/images/edit.png" alt="Редактировать" class="rightButton">
+        </a>
+      </td>-->
+    </tr>
+  </table>
+</div>

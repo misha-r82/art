@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Article} from "../../articles/article.model";
+import {HttpArticlesService} from "../../services/http.articles.service";
 
 @Component({
   selector: 'app-admin-menu',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminMenuComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private httpArtService : HttpArticlesService) { }
+  articles : Article[];
   ngOnInit() {
+    var data = this.httpArtService.getArtList();
+    this.httpArtService.getArtList(this.id).subscribe(
+      (data: Article[]) => {
+        this.articles = data;
+
+      });
   }
 
 }
