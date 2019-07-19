@@ -8,7 +8,7 @@ import { ArticleListComponent } from './articles/article-list/article-list.compo
 import { ArticleViewComponent } from './articles/article-view/article-view.component';
 import {RouterModule} from "@angular/router";
 import { CommentComponent } from './articles/comment/comment.component';
-import { ArticleEditComponent } from './articles/article-edit/article-edit.component';
+import { ArticleEditComponent } from './admin/article-edit/article-edit.component';
 import {CkEditorComponent} from "./articles/ckeditor.component";
 import { AdminMenuComponent } from './admin/admin-menu/admin-menu.component';
 import {AuthModule} from "../auth/auth.module";

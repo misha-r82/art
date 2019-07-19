@@ -51,7 +51,7 @@ function Db()
                 connection.query(sql, resolve);
             });
         },
-        deleteArticle: function ( id, callback )
+        deleteArticle: function ( id )
         {
             return new Promise(function(resolve, reject) {
                 var sql = "DELETE FROM comments " + " WHERE to_article='" + id + "';";
@@ -61,7 +61,7 @@ function Db()
                 });
             });
         },
-        getArticlesList: function(razdelId, callback )
+        getArticlesList: function(razdelId )
         {
             return new Promise(function(resolve, reject) {
                 var sql = (razdelId > -1) ?

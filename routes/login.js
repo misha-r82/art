@@ -13,7 +13,7 @@ module.exports = function(app)
             failureRedirect: '/login'
         }),
         function (req, res) {
-            res.redirect('http://localhost:4200/articles/');
+            res.redirect('http://localhost:4200/login/');
         });
     router.get('/logout/', (req, res)=>
     {
@@ -26,7 +26,7 @@ module.exports = function(app)
     })
         router.get('/getUser', function (req, res) {
             if(req.user == undefined) res.send({});
-            else res.send({ "userName": req.user.userName, "isAdmin": req.user.isAdmin});
+            else res.send({ "userName": req.user.username, "isAdmin": req.user.isAdmin});
 
         })
     .post('/', function (req, res, next)

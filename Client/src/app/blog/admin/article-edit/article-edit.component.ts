@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {Article} from "../article.model";
+import {Article} from "../../articles/article.model";
 import {ActivatedRoute, Params} from "@angular/router";
 import {HttpArticlesService} from "../../services/http.articles.service";
 import {HttpRazdelsService} from "../../services/http.razdels.service";
-import {Razdel} from "../razdel.model";
+import {Razdel} from "../../articles/razdel.model";
 
 
 @Component({

@@ -1,25 +1,31 @@
 <h1>Статьи</h1>
 <a href="/admin/articles/add/" class="rightPanel">
   <div class="buttonText">Создать статью</div>
-  <img src="/images/add.png" alt="Создать" class="rightButton">
+  <img src="assets/images/add.png" alt="Создать" class="rightButton">
 
 </a>
 <div class="clr"></div>
 <div id="content">
   <table width="100%">
-
+  <tr>
+    <th>Статья</th>
+    <th>Создана</th>
+    <th>Обновлена</th>
+  </tr>
     <tr *ngFor="let article of articles">
-      <td>
-        <H2><a [routerLink]="['/articles/article', article.id]">{{article.title}}</a></H2>
+      <td width="100%">
+        <a [routerLink]="['/articles/article', article.id]">{{article.title}}</a>
       </td>
-      <!--<td width="60px">
+      <td>{{article.created | date:'dd.MM.yy'}}</td>
+      <td>{{article.updated| date:'dd.MM.yy'}}</td>
+      <td width="60px">
         <a href="articles/delete/{{id}}">
-          <img src="/images/delete.svg" alt="Удалить" class="rightButton">
+          <img src="assets/images/delete.svg" alt="Удалить" class="rightButton">
         </a>
-        <a href="articles/edit/{{id}}">
-          <img src="/images/edit.png" alt="Редактировать" class="rightButton">
+        <a href="admin/articles/edit/{{article.id}}">
+          <img src="assets/images/edit.png" alt="Редактировать" class="rightButton">
         </a>
-      </td>-->
+      </td>
     </tr>
   </table>
 </div>

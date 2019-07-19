@@ -12,7 +12,7 @@ function Db()
             WHERE sotialId='${sotialId}' AND profileId ='${profileId}';`;
                 connection.query(sql, function (err, data) {
                     if (err || data == undefined || data.length < 1) reject();
-                    resolve(data[0]);
+                    else resolve(data[0]);
                 });
             })
         },
