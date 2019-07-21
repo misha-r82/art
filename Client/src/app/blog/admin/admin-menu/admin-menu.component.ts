@@ -12,8 +12,7 @@ export class AdminMenuComponent implements OnInit {
   constructor(private httpArtService : HttpArticlesService) { }
   articles : Article[];
   ngOnInit() {
-    var data = this.httpArtService.getArtList();
-    this.httpArtService.getArtList(this.id).subscribe(
+     this.httpArtService.getArtList(-1).subscribe(
       (data: Article[]) => {
         this.articles = data;
 

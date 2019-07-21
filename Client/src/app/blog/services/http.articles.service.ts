@@ -14,6 +14,10 @@ export class HttpArticlesService{
     return this.http.get(`http://localhost:3000/articles/byId/${artId}`);
 
   }
+  updateArticle()
+  {
+
+  }
   addComment(data:any)
   {
 

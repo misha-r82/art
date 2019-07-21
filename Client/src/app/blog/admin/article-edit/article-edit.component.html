@@ -11,7 +11,7 @@
     <app-ckeditor [value]="article.text"></app-ckeditor>
 
 
-    <input type="submit"  value="Сохранить"/>
+    <input type="button"  value="Сохранить" (click)="onOkClick()"/>
     <input type="button" value="Отмена" />
   </form>
   <app-comment *ngFor="let comm of article.comments" [comment]="comm"></app-comment>

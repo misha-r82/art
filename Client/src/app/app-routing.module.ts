@@ -21,8 +21,9 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent},*/
   { path: 'login', component: AuthComponent },
   {path:'articles', component:ArticlesComponent, children : artRoutes},
-  {path:'admin/articles', component:AdminArticlesComponent, children : adminArtRoutes},
-  {path:'admin/articles/edit:id', component:ArticleEditComponent},
+  {path:'admin/articles', component:AdminArticlesComponent},
+  {path:'admin/articles/edit/:id', component:ArticleEditComponent},
+  {path:'admin/articles/add', component:ArticleEditComponent},
 ];
 
 @NgModule({

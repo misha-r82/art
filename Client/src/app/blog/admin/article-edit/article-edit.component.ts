@@ -29,4 +29,7 @@ export class ArticleEditComponent implements OnInit {
     });
   }
 
+  onOkClick() {
+
+  }
 }
