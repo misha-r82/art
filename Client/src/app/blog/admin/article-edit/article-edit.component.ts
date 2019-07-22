@@ -24,12 +24,15 @@ export class ArticleEditComponent implements OnInit {
       this.httpArtService.getArtСontent(id).subscribe(
         (data: Article) => {
           this.article = data;
-          this.razdelService.getData().subscribe((data : Razdel[]) =>this.razdels = data);
+
         });
+      this.razdelService.getData().subscribe((data : Razdel[]) =>this.razdels = data);
     });
   }
 
   onOkClick() {
+    console.log(this.article);
+       // this.httpArtService.addArticle(this.article).subscribe((data)=> console.log(data));
 
   }
 }

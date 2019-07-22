@@ -18,6 +18,23 @@ router.get( '/', async function(req, res)
 
 })
 router.route('/add')
+    .post(async function (req, res)
+    {
+        /*
+        var article = req.body;
+        article.author = req.user.id;
+        try
+        {
+            if (article.id > 0) await db.addArticle(article);
+            else await db.updateArticle(article);
+        } catch (e) {
+            res.json({"status":"err", "err":e});
+
+        }
+        res.json({"status" : "ok"});*/
+
+    })
+/*router.route('/add')
     .get(async function(req, res)
     {
         if (!req.isAuthenticated())
@@ -36,7 +53,7 @@ router.route('/add')
         await db.addArticle(article);
         req.flash('msg', 'статья успешно создана!');
         res.redirect("/admin/articles");
-    });
+    });*/
 router.route('/edit/:id')
     .get(async (req, res) =>
     {

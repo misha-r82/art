@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Comment} from "../articles/comment.model";
+import {Article} from "../articles/article.model";
 
 @Injectable()
 export class HttpArticlesService{
@@ -14,9 +15,9 @@ export class HttpArticlesService{
     return this.http.get(`http://localhost:3000/articles/byId/${artId}`);
 
   }
-  updateArticle()
+  addArticle(article : Article)
   {
-
+    return this.http.post(`http://localhost:3000/admin/articles/add/`, article);
   }
   addComment(data:any)
   {
