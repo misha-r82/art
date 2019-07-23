@@ -16,16 +16,21 @@ export class ArticleEditComponent implements OnInit {
 
   article : Article;
   razdels : Razdel[];
-  constructor(private route: ActivatedRoute, private httpArtService: HttpArticlesService, private razdelService : HttpRazdelsService) { }
+  constructor(private route: ActivatedRoute, private httpArtService: HttpArticlesService, private razdelService : HttpRazdelsService)
+  {
+    this.article =new Article();
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       let id = +params["id"];
-      this.httpArtService.getArtСontent(id).subscribe(
-        (data: Article) => {
-          this.article = data;
-
-        });
+      if (id >0)
+      {
+        this.httpArtService.getArtСontent(id).subscribe(
+          (data: Article) => {
+            this.article = data;
+          });
+      }
       this.razdelService.getData().subscribe((data : Razdel[]) =>this.razdels = data);
     });
   }

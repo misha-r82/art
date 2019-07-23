@@ -7,8 +7,8 @@
       {{razdel.razdel}}
       </option>
     </select>
-    <input name="title" type="text" value="{{article.title}}"/>
-    <app-ckeditor [value]="article.text"></app-ckeditor>
+    <input name="title" type="text" [(value)]="article.title"/>
+    <app-ckeditor [(value)]="article.text"></app-ckeditor>
     <input type="button"  value="Сохранить" (click)="onOkClick()"/>
     <input type="button" routerLink="/admin/articles/" value="Отмена" />
   </form>
