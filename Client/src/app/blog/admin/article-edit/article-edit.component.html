@@ -1,16 +1,19 @@
 <main id="content">
 
-  <form action="" method="POST">
+  <div>
 
     <select name="razdelList">
       <option *ngFor="let razdel of razdels" value="{{razdel.razdelId}}" [selected] = "razdel.selected">
       {{razdel.razdel}}
       </option>
     </select>
-    <input name="title" type="text" [(value)]="article.title"/>
-    <app-ckeditor [(value)]="article.text"></app-ckeditor>
+    <div >
+      <input name="title" type="text" [(ngModel)]="article.title"/>
+      <app-ckeditor #editor [(ngModel)]="article.text"></app-ckeditor>
+    </div>
+
     <input type="button"  value="Сохранить" (click)="onOkClick()"/>
     <input type="button" routerLink="/admin/articles/" value="Отмена" />
-  </form>
+  </div>
   <app-comment *ngFor="let comm of article.comments" [comment]="comm"></app-comment>
 </main>

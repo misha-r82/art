@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Article} from "../../articles/article.model";
 import {ActivatedRoute, Params} from "@angular/router";
 import {HttpArticlesService} from "../../services/http.articles.service";
@@ -12,10 +12,11 @@ import {Razdel} from "../../articles/razdel.model";
   styleUrls: ['./article-edit.component.css'],
   providers:[HttpRazdelsService, HttpArticlesService]
 })
-export class ArticleEditComponent implements OnInit {
+export class ArticleEditComponent implements OnInit, OnDestroy {
 
   article : Article;
   razdels : Razdel[];
+  @ViewChild('editor') editor:ElementRef;
   constructor(private route: ActivatedRoute, private httpArtService: HttpArticlesService, private razdelService : HttpRazdelsService)
   {
     this.article =new Article();
@@ -39,5 +40,9 @@ export class ArticleEditComponent implements OnInit {
     console.log(this.article);
        // this.httpArtService.addArticle(this.article).subscribe((data)=> console.log(data));
 
+  }
+  ngOnDestroy()
+  {
+    editor.nativeElement.destroy();
   }
 }

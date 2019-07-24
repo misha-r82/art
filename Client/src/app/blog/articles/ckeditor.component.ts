@@ -52,7 +52,7 @@ private loadScript : Promise<void>;
       resolve => {
         const s = this.renderer.createElement('script');
         s.type = 'text/javascript';
-        s.src = 'https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js';
+        s.src = 'https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js';
         s.onload = resolve;
         this.renderer.appendChild(this._document.body, s);
         console.log("Constructor end!!!");
@@ -107,8 +107,7 @@ this.loadScript.then(()=>this.init());
       });
     }
   }
-  setDisabledState(isDisabled: boolean): void {
-  }
+  setDisabledState(isDisabled: boolean): void {  }
 }
 
 
