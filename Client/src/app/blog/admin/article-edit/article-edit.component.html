@@ -13,7 +13,7 @@
     </div>
 
     <input type="button"  value="Сохранить" (click)="onOkClick()"/>
-    <input type="button" routerLink="/admin/articles/" value="Отмена" />
+    <input type="button" (click)="onCanselClick(editor)" value="Отмена" />
   </div>
   <app-comment *ngFor="let comm of article.comments" [comment]="comm"></app-comment>
 </main>

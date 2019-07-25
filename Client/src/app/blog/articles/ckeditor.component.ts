@@ -99,12 +99,17 @@ this.loadScript.then(()=>this.init());
 
   ngOnDestroy() {
     if (this.instance) {
+      this.instance.removeAllListeners();
+      CKEDITOR.instances[this.instance.name].destroy();
+      this.instance.destroy();
+      this.instance = null;
+      /*
       setTimeout(() => {
         this.instance.removeAllListeners();
         CKEDITOR.instances[this.instance.name].destroy();
         this.instance.destroy();
         this.instance = null;
-      });
+      });*/
     }
   }
   setDisabledState(isDisabled: boolean): void {  }

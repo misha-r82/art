@@ -1,9 +1,10 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Article} from "../../articles/article.model";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {HttpArticlesService} from "../../services/http.articles.service";
 import {HttpRazdelsService} from "../../services/http.razdels.service";
 import {Razdel} from "../../articles/razdel.model";
+import {CkEditorComponent} from "../../articles/ckeditor.component";
 
 
 @Component({
@@ -17,7 +18,10 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
   article : Article;
   razdels : Razdel[];
   @ViewChild('editor') editor:ElementRef;
-  constructor(private route: ActivatedRoute, private httpArtService: HttpArticlesService, private razdelService : HttpRazdelsService)
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private httpArtService: HttpArticlesService,
+              private razdelService : HttpRazdelsService)
   {
     this.article =new Article();
   }
@@ -41,8 +45,14 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
        // this.httpArtService.addArticle(this.article).subscribe((data)=> console.log(data));
 
   }
+  onCanselClick(e:CkEditorComponent)
+  {
+    e.ngOnDestroy();
+    this.router.navigate(["/admin/articles"]);
+
+  }
   ngOnDestroy()
   {
-    editor.nativeElement.destroy();
+
   }
 }
