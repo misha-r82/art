@@ -55,16 +55,13 @@ private loadScript : Promise<void>;
         s.src = 'https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js';
         s.onload = resolve;
         this.renderer.appendChild(this._document.body, s);
-        console.log("Constructor end!!!");
       }
     )
   }
 init()
 {
-  //console.log("Init!!!");
   this.instance = CKEDITOR.replace(this.editor.nativeElement, this.config);
   this.instance.setData(this._value);
-  // CKEditor change event
   this.instance.on('change', () => {
     let value = this.instance.getData();
     this.updateValue(value);
@@ -86,7 +83,6 @@ this.loadScript.then(()=>this.init());
   }
 
   writeValue(value: any) {
-    console.log('writeValue');
     this._value = value;
     if (this.instance) {
       this.instance.setData(value);
