@@ -20,7 +20,7 @@ router.get( '/', async function(req, res)
 router.route('/add')
     .post(async function (req, res)
     {
-        /*
+
         var article = req.body;
         article.author = req.user.id;
         try
@@ -31,7 +31,7 @@ router.route('/add')
             res.json({"status":"err", "err":e});
 
         }
-        res.json({"status" : "ok"});*/
+        res.json({"status" : "ok"});
 
     })
 /*router.route('/add')

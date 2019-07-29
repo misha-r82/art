@@ -41,8 +41,8 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
   }
 
   onOkClick() {
-    console.log(this.article);
-       // this.httpArtService.addArticle(this.article).subscribe((data)=> console.log(data));
+//    console.log(this.article);
+      this.httpArtService.addArticle(this.article).subscribe((data)=> console.log(data));
 
   }
   onCanselClick(e:CkEditorComponent)

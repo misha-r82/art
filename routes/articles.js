@@ -46,10 +46,5 @@ router.get( '/:id', async (req, res)=>
     article.comments = await comments.getArticleComments(article.id);
     res.render('article_view', article);
 });
-router.get( '/delete/:id', (req, res) =>
-{
-    db.deleteArticle(req.params.id);
-    req.flash('msg', 'статья удалена!');
-    res.redirect('/articles');
-});
+
 module.exports = router;
