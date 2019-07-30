@@ -25,7 +25,7 @@ module.exports = function(app)
         res.render('login');
     })
         router.get('/getUser', function (req, res) {
-            if(req.user == undefined) res.send({});
+            if(req.user == undefined) res.send({"err":"user not found!"});
             else res.send({ "userName": req.user.username, "isAdmin": req.user.isAdmin});
 
         })

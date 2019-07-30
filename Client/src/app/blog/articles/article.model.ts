@@ -2,7 +2,7 @@ import {Comment} from "./comment.model";
 
 export class Article
 {
-  id: number;
+  id: number = -1;
   razdelId : number;
   title: string;
   text: string;

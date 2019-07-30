@@ -36,7 +36,7 @@ export class AuthService {
   }
   getUser()
   {
-    this.http.get(`http://localhost:3000/login/getUser/`, { withCredentials: true }).subscribe(
+    this.http.get(`http://localhost:3000/login/getUser/`/*, { withCredentials: true }*/).subscribe(
       (user : User)=> {
         console.log(user);
         if (user && user.hasOwnProperty("userName")) {
