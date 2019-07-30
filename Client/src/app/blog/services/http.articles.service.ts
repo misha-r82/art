@@ -17,20 +17,20 @@ export class HttpArticlesService{
   }
   addArticle(article : Article)
   {
-    return this.http.post(`http://localhost:3000/admin/articles/add/`, article);
+    return this.http.post(`http://localhost:3000/admin/articles/add/`, article,{ withCredentials: true });
   }
   addComment(data:any)
   {
 
-    return this.http.post(`http://localhost:3000/comments/add/`, data);
+    return this.http.post(`http://localhost:3000/comments/add/`, data,{ withCredentials: true });
   }
   updateComment(comment:Comment)
   {
     console.log("update");
-    return this.http.post(`http://localhost:3000/comments/update/`, comment);
+    return this.http.post(`http://localhost:3000/comments/update/`, comment, { withCredentials: true });
   }
   delComment(id:number){
     return this.http.post(`http://localhost:3000/comments/delete/`,
-      {commentId : id});
+      {commentId : id},{ withCredentials: true });
   }
 }

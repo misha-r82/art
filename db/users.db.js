@@ -22,7 +22,10 @@ function Db()
             return new Promise((resolve, reject) => {
                 var sql = `INSERT INTO \`users\` (username, sotialId, profileId, photoURL)` +
                     `VALUES ('${user.username}','${user.sotialId}','${user.profileId}','${user.photoURL}');`;
-                connection.query( sql);
+                connection.query( sql, function (err, results, fields)
+                {
+                   if (err) user.id = results.insertId;
+                });
             })
         }
     };

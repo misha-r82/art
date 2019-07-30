@@ -24,11 +24,11 @@ module.exports = function(app)
     {
         res.render('login');
     })
-        router.get('/getUser', function (req, res) {
-            if(req.user == undefined) res.send({});
-            else res.send({ "userName": req.user.username, "isAdmin": req.user.isAdmin});
+    router.get('/getUser', function (req, res) {
+        if(req.user == undefined) res.send({"user": "not found"});
+        else res.send({ "userName": req.user.username, "isAdmin": req.user.isAdmin});
 
-        })
+    })
     .post('/', function (req, res, next)
         {
             passport.authenticate('local', (err, user, info) => {

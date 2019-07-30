@@ -40,7 +40,7 @@ function Db()
             return new Promise((resolve, reject) => {
                 var sql = `INSERT INTO articles (razdel_id, title, text, author) VALUES  
                 ('${article.razdelId}','${article.title}','${article.text}',${article.author});`;
-                connection.query( sql, resolve );
+                //connection.query( sql, resolve );
             })
         },
 

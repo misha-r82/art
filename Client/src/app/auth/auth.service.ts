@@ -37,7 +37,7 @@ export class AuthService {
   getUser()
   {
     this.http.get(`http://localhost:3000/login/getUser/`, { withCredentials: true }).subscribe(
-      (user : User)=> {
+      (user : any)=> {
         console.log(user);
         if (user && user.hasOwnProperty("userName")) {
           this.user = user;
@@ -47,7 +47,6 @@ export class AuthService {
           this.user = new User();
           this.isSigned = false;
         }
-        console.log(this.isSigned);
       });
 
   }

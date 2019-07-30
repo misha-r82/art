@@ -22,11 +22,15 @@ router.route('/add')
     {
 
         var article = req.body;
-        article.author = req.user.id;
+
         try
         {
-            if (article.id > 0) await db.addArticle(article);
-            else await db.updateArticle(article);
+            if (article.id > 0) await db.updateArticle(article);
+            else
+            {
+                article.author = req.user.id;
+                await db.addArticle(article);
+            }
         } catch (e) {
             res.json({"status":"err", "err":e});
 
