@@ -3,6 +3,8 @@ import {AuthComponent} from "./auth.component";
 import {CommonModule} from "@angular/common";
 import { UserComponent } from './user/user.component';
 import {WebsocketService} from "../Services/webSoketService";
+import {CacheInterceptor} from "./cacheInterceptor";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 @NgModule({
   declarations:[
@@ -13,7 +15,7 @@ import {WebsocketService} from "../Services/webSoketService";
     CommonModule
   ],
   exports:[AuthComponent, UserComponent],
-  providers:[WebsocketService]
+  providers:[WebsocketService, { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true }]
 
 
 

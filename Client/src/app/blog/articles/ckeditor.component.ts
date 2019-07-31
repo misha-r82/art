@@ -101,6 +101,7 @@ this.loadScript.then(()=>this.init());
       this.instance = null;
       /*
       setTimeout(() => {
+        console.log("CKEDITOR desroy");
         this.instance.removeAllListeners();
         CKEDITOR.instances[this.instance.name].destroy();
         this.instance.destroy();
