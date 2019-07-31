@@ -3,6 +3,10 @@ module.exports = function(app)
     var express = require("express");
     var router = express.Router();
     var passport = require('../autorize/passport')(app);
+    app.get('*', function(req, res, next){
+        res.setHeader('Last-Modified', (new Date()).toUTCString());
+        next();
+    });
     app.get('/auth/vk',
        passport.authenticate('vkontakte', {
             scope: ['email']
@@ -26,7 +30,7 @@ module.exports = function(app)
     })
         router.get('/getUser', function (req, res) {
             if(req.user == undefined) res.send({"err":"user not found!"});
-            else res.send({ "userName": req.user.username, "isAdmin": req.user.isAdmin});
+            else res.json({ "userName": req.user.userName, "isAdmin": req.user.isAdmin == true});
 
         })
     .post('/', function (req, res, next)
