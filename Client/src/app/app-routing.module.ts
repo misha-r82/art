@@ -6,6 +6,7 @@ import {ArticleListComponent} from "./blog/articles/article-list/article-list.co
 import {ArticleViewComponent} from "./blog/articles/article-view/article-view.component";
 import {ArticleEditComponent} from "./blog/admin/article-edit/article-edit.component";
 import {AdminArticlesComponent} from "./blog/admin/admin-articles/admin-articles.component";
+import {ADminGuard} from "./admin.guard";
 
 const artRoutes: Routes = [
   { path: 'razdel/:id', component: ArticleListComponent},
@@ -21,13 +22,14 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent},*/
   { path: 'login', component: AuthComponent },
   {path:'articles', component:ArticlesComponent, children : artRoutes},
-  {path:'admin/articles', component:AdminArticlesComponent},
-  {path:'admin/articles/edit/:id', component:ArticleEditComponent},
-  {path:'admin/articles/add', component:ArticleEditComponent},
+  {path:'admin/articles', component:AdminArticlesComponent, canActivate:[ADminGuard]},
+  {path:'admin/articles/edit/:id', component:ArticleEditComponent, canActivate:[ADminGuard]},
+  {path:'admin/articles/add', component:ArticleEditComponent, canActivate:[ADminGuard]},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[ADminGuard]
 })
 export class AppRoutingModule { }
