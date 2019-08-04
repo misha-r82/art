@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserComponent} from "../../auth/user/user.component";
+import {ADminGuard} from "../../admin.guard";
 
 @Component({
   selector: 'app-main-menu',
@@ -9,7 +10,7 @@ import {UserComponent} from "../../auth/user/user.component";
 })
 export class MainMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminGuard : ADminGuard) { }
 
   ngOnInit() {
   }

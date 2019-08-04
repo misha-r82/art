@@ -17,14 +17,15 @@ const adminArtRoutes: Routes = [
   { path: 'edit/:id', component: ArticleEditComponent},
 
 ];
+
 const routes: Routes = [
-  /*{ path: '', component: HomeComponent},
-  { path: 'about', component: AboutComponent},*/
+
   { path: 'login', component: AuthComponent },
   {path:'articles', component:ArticlesComponent, children : artRoutes},
   {path:'admin/articles', component:AdminArticlesComponent, canActivate:[ADminGuard]},
   {path:'admin/articles/edit/:id', component:ArticleEditComponent, canActivate:[ADminGuard]},
   {path:'admin/articles/add', component:ArticleEditComponent, canActivate:[ADminGuard]},
+  { path: '**', redirectTo:"/articles" },
 ];
 
 @NgModule({

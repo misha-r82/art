@@ -11,7 +11,7 @@ export class AuthService {
 
   io: Subject<any>;
   isSigned:boolean = false;
-  user: any;
+  user: any = new User();
   // Our constructor calls our wsService connect method
   constructor(private wsService: WebsocketService, private http: HttpClient) {
     //this.wsService.init("http://localhost:3000/");
@@ -53,12 +53,13 @@ export class AuthService {
   }
   authVk()
   {
-
     return this.http.get(`http://localhost:3000/auth/vk`);
-
-
   }
-
+  auth(login : string, password:string)
+  {
+    let data = {"login" : login, "password" : password}
+    return this.http.post(`http://localhost:3000/auth/vk`, data);
+  }
   sendMsg(msg) {
     this.io.next(msg);
   }

@@ -2,7 +2,7 @@
   <nav>
     <ul>
       <li><a routerLink="/articles/">Статьи</a></li>
-      <li><a routerLink="/admin/articles">Управление статьями=</a></li>
+      <li *ngIf="adminGuard.canActivate()"><a routerLink="/admin/articles">Управление статьями</a></li>
     </ul>
   </nav>
   <app-user align="right"></app-user>

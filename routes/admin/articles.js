@@ -4,6 +4,11 @@ var db = require('../../db/articles.db.js')();
 var dbRazdel = require('../../db/razdels.db.js')();
 var comments = require('../../controllers/comments.js')();
 module.exports = router;
+router.get('*', function(req, res, next){
+    if (req.user != undefinded && req.user.isAdmin == true)
+        next();
+    else res.json({"err" : "доступ запрещен"});
+});
 router.get( '/', async function(req, res)
 {
     data = await db.getArticlesList();
@@ -33,7 +38,6 @@ router.route('/add')
             }
         } catch (e) {
             res.json({"status":"err", "err":e});
-
         }
         res.json({"status" : "ok"});
 

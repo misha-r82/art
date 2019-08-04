@@ -10,6 +10,8 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AuthComponent implements OnInit {
 
+  login : string;
+  password:string;
   constructor(private wsAuthService: AuthService, @Inject(DOCUMENT) private document: any) {
 
   }
@@ -23,5 +25,10 @@ export class AuthComponent implements OnInit {
   {
     this.document.location = "http://localhost:3000/auth/vk";
 
+  }
+
+  onLoginClick()
+  {
+    this.wsAuthService.auth(this.login, this.password);
   }
 }

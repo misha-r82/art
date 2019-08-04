@@ -3,10 +3,10 @@ module.exports = function(app)
     var express = require("express");
     var router = express.Router();
     var passport = require('../autorize/passport')(app);
-    app.get('*', function(req, res, next){
+    /*app.get('*', function(req, res, next){
         res.setHeader('Last-Modified', (new Date()).toUTCString());
         next();
-    });
+    });*/
     app.get('/auth/vk',
        passport.authenticate('vkontakte', {
             scope: ['email']
@@ -17,7 +17,7 @@ module.exports = function(app)
             failureRedirect: '/login'
         }),
         function (req, res) {
-            res.redirect('http://localhost:4200/login/');
+            res.redirect('http://localhost:4200/');
         });
     router.get('/logout/', (req, res)=>
     {
@@ -34,20 +34,18 @@ module.exports = function(app)
 
         })
     .post('/', function (req, res, next)
-        {
-            passport.authenticate('local', (err, user, info) => {
-                if (err) {
-                    return next(err);
-                }
-                if (!user) {
-                    return res.send('Укажите правильный email и пароль!');
-                }
-                req.login(user, err => {
-                    if(err) console.log(err);
-                    res.redirect('/');
-                });
-            })(req, res, next);
-        })
+    {
+        passport.authenticate('local', (err, user, info) => {
+            if (err) { return next(err); }
+            if (!user) {
+                return res.send({"status":"err"});
+            }
+            req.login(user, err => {
+                if(err) console.log(err);
+                res.send({"status":"ok"});
+            });
+        })(req, res, next);
+    })
     return router;
 }
 
