@@ -57,8 +57,10 @@ export class AuthService {
   }
   auth(login : string, password:string)
   {
+
     let data = {"login" : login, "password" : password}
-    return this.http.post(`http://localhost:3000/auth/vk`, data);
+    console.log(data);
+    return this.http.post(`http://localhost:3000/login`, data);
   }
   sendMsg(msg) {
     this.io.next(msg);

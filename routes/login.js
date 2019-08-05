@@ -42,7 +42,8 @@ module.exports = function(app)
             }
             req.login(user, err => {
                 if(err) console.log(err);
-                res.send({"status":"ok"});
+
+                res.json({"status":"ok"});
             });
         })(req, res, next);
     })

@@ -1,13 +1,14 @@
+<div *ngIf="isFail" class="error">Неверное имя пользователя или пароль</div>
 <table>
   <tr>
     <td>Логин</td>
-    <td><input name="username" type="text" [ngModel]="login"></td>
+    <td><input name="username" type="text" [(ngModel)]="login"></td>
   </tr>
   <tr>
     <td>Пароль</td>
-    <td><input name="password" type="password" [ngModel]="password"></td>
+    <td><input name="password" type="password" [(ngModel)]="password"></td>
   </tr>
-  <tr><td colspan="2"><input type="button" value="Войти" (onClick)="onLoginClick()"></td> </tr>
+  <tr><td colspan="2"><input type="button" value="Войти" (click)="onLoginClick()"></td> </tr>
 </table>
 <a (click)="vkClick()">ВК</a>
 <input type="button" (click)="testClick()" innerText="test">
