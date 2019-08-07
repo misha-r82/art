@@ -59,7 +59,7 @@ export class AuthService {
   {
 
     let data = {"login" : login, "password" : password}
-    return this.http.post(`http://localhost:3000/login`, data);
+    return this.http.post(`http://localhost:3000/login`, data, { withCredentials: true });
   }
   sendMsg(msg) {
     this.io.next(msg);
