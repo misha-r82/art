@@ -59,7 +59,6 @@ export class AuthService {
   {
 
     let data = {"login" : login, "password" : password}
-    console.log(data);
     return this.http.post(`http://localhost:3000/login`, data);
   }
   sendMsg(msg) {
