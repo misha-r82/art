@@ -5,7 +5,8 @@ module.exports = function (app)
 
     require('../autorize/vk.js')(passport);
     require('../autorize/local.js')(passport);
-
+    app.use(passport.initialize());
+    app.use(passport.session());
     passport.serializeUser(function(user, done) {
         done(null, JSON.stringify(user));
     });
@@ -13,8 +14,7 @@ module.exports = function (app)
     passport.deserializeUser(function(id, done) {
         done(null, JSON.parse(id));
     });
-    app.use(passport.initialize());
-    app.use(passport.session());
+
 return passport;
 }
 

@@ -6,6 +6,7 @@ import {AuthService} from "./auth/auth.service";
 export class ADminGuard implements CanActivate{
   constructor(private authService: AuthService)  { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean> | boolean{
+    //console.log(this.authService.user)
     return this.authService.user.isAdmin === true;
   }
 }

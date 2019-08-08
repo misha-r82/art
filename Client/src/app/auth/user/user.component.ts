@@ -4,7 +4,7 @@ import {AuthService} from "../auth.service";
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
-  providers:[AuthService]
+
 })
 export class UserComponent implements OnInit {
 

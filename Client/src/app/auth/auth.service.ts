@@ -11,7 +11,7 @@ export class AuthService {
 
   io: Subject<any>;
   isSigned:boolean = false;
-  user: any = new User();
+  user: User = new User();
   // Our constructor calls our wsService connect method
   constructor(private wsService: WebsocketService, private http: HttpClient) {
     //this.wsService.init("http://localhost:3000/");
@@ -27,10 +27,8 @@ export class AuthService {
     this.http.get(`http://localhost:3000/login/logout/`,{ withCredentials: true }).subscribe(
       (data)=>
       {
-        console.log(data);
         if (data["status"] == "ok")
           this.getUser();
-
       }
     )
   }
@@ -38,7 +36,6 @@ export class AuthService {
   {
     this.http.get(`http://localhost:3000/login/getUser/`, { withCredentials: true }).subscribe(
       (user : User)=> {
-        console.log(user);
         if (user && user.hasOwnProperty("userName")) {
           this.user = user;
           this.isSigned = true;
@@ -47,7 +44,6 @@ export class AuthService {
           this.user = new User();
           this.isSigned = false;
         }
-        console.log(this.isSigned);
       });
 
   }
