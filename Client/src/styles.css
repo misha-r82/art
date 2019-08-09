@@ -3,7 +3,7 @@ body {
   padding: 50px;
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #f6f6f6;
-  color:#666;
+  color:#414141;
 }
 html
 {
@@ -24,7 +24,10 @@ ul{
   padding:0;
   margin:0;
 }
-
+li
+{
+  list-style: none;
+}
 h1,h2,h3,p{
   padding:5px 0;
   margin-bottom:0;
@@ -33,36 +36,27 @@ h1,h2,h3,p{
 p{
   margin:0;
 }
-nav{
-  background:#404137;
-  color:#fff;
-  overflow:auto;
-  height:30px;
-  padding:15px 0 0 7px;
-  font-size: 14px;
-}
-nav li{
-  float:left;
-  list-style:none;
-}
-nav a{
-  padding:7px;
-  margin:0 7px;
-  color:#fff;
-  text-decoration:none;
-}
-nav a.current, nav a:hover{
-  background: #83cd29;
-  color:#000;
-}
+
 #content{
-  border: 1px solid #ccc;
+  border: 1px solid #B3B3B3;
   margin: 20px auto;
   padding:20px;
-  border-top: #83cd39 3px solid;
+  border-top: #063 2px solid;
 }
 a {
-  color: #83cd29;
+  color: #1762DC;
+  font-size: 12px;
+  text-decoration: underline;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+a:hover {
+  color: #1762DC;
+}
+a:active {
+  color: #990000;
+}
+a:visited {
+  color: #8BADE3;
 }
 textarea
 {
@@ -109,7 +103,7 @@ textarea
 #modalWindow{
   opacity: 1;
   margin: 50px;
-  background: #fff;
+  background: #F5F5F5;
   z-index: 101;
   position: relative;
   top: 0;

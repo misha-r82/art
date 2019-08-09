@@ -1,0 +1,27 @@
+nav{
+  background:#063;
+  color:#fff;
+  overflow:auto;
+  height:30px;
+  padding:15px 0 0 7px;
+  font-size: 14px;
+}
+nav li{
+  float:left;
+  list-style:none;
+}
+a{
+  padding:15px;
+  margin:0 7px;
+  color:#fff;
+  text-decoration:none;
+}
+a.current, a:hover{
+  background: #09c;
+  color:#000;
+}
+app-user {
+  position: absolute;
+  right: 60px;
+  margin: 7px;
+}
