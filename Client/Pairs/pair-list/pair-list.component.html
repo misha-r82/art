@@ -1,0 +1,7 @@
+<table>
+  <tr *ngFor="let item of items">
+    <str-pair [pair]="item"></str-pair>
+  </tr>
+</table>
+<input type="button" (click)="onStart()" />
+<div *ngIf="testBool">123</div>
