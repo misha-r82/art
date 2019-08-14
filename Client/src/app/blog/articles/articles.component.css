@@ -1,0 +1,13 @@
+app-razdels
+{
+  float:left;
+  width:20%;
+  /*min-width: 100px;*/
+}
+#content
+{
+  float:left;
+  width: 74%;
+
+
+}

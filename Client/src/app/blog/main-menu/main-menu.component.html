@@ -1,11 +1,13 @@
 <div>
+  <app-user align="right"></app-user>
   <nav>
+
     <ul>
-      <li><a routerLink="/articles/">Статьи</a></li>
+     <li><img id="home-img" src="/assets/images/home.svg" alt="На главную" routerLink="/articles/"></li>
       <li *ngIf="adminGuard.canActivate()"><a routerLink="/admin/articles">Управление статьями</a></li>
     </ul>
   </nav>
-  <app-user align="right"></app-user>
+  <!--<a >Статьи</a>-->
 </div>
 
 

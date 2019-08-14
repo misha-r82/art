@@ -1,12 +1,12 @@
 <div class="commentBody">
   <div *ngIf="!isEditing">
     <div class="commentAuthor">{{comment.author}}</div>
-    <div class="editButton" onclick="">
+    <div class="editButton" *ngIf="adminGuard.canActivate()">
       <img src="/assets/images/edit.png"  (click)="EditCommentClick()"
            alt="Редактировать" class="rightButton">
     </div>
-    <div class="editButton" (click)="DeleteCommentClick()">
-      <img src="/assets/images/delete.svg" alt="Удалить" class="rightButton">
+    <div *ngIf="adminGuard.canActivate()" class="editButton" (click)="DeleteCommentClick()">
+      <img  src="/assets/images/delete.svg" alt="Удалить" class="rightButton">
     </div>
     <div class="commentText">{{comment.text}}</div>
   </div>

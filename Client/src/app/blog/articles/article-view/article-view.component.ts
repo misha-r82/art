@@ -3,6 +3,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 import {HttpArticlesService} from "../../services/http.articles.service";
 import {Article} from "../article.model";
 import {Comment} from "../comment.model";
+import {AuthService} from "../../../auth/auth.service";
 
 @Component({
   selector: 'app-article-view',
@@ -12,7 +13,8 @@ import {Comment} from "../comment.model";
 export class ArticleViewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-              private httpArtService: HttpArticlesService) {
+              private httpArtService: HttpArticlesService,
+              private authServoce: AuthService) {
   }
 
   @Input() article: Article;

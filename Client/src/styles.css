@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  padding: 50px;
+
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #f6f6f6;
   color:#414141;
@@ -38,10 +38,10 @@ p{
 }
 
 #content{
-  border: 1px solid #B3B3B3;
-  margin: 20px auto;
-  padding:20px;
-  border-top: #063 2px solid;
+  /*border: 1px solid #B3B3B3;*/
+  margin: 10px auto;
+  padding:10px;
+  /*border-top: #063 2px solid;*/
 }
 a {
   color: #1762DC;

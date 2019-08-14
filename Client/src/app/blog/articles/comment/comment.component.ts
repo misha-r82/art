@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Comment} from '../comment.model';
-import {Article} from "../article.model";
+import {ADminGuard} from "../../../admin.guard";
+
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
@@ -8,7 +9,7 @@ import {Article} from "../article.model";
 })
 export class CommentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminGuard : ADminGuard) { }
   @Output() onDelete = new EventEmitter<Comment>();
   @Output() onEndEdit = new EventEmitter<Comment>();
   @Input() comment : Comment;

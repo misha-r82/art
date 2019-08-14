@@ -25,3 +25,11 @@ app-user {
   right: 60px;
   margin: 7px;
 }
+
+#home-img
+{
+  display: block;
+  width: 30px;
+  height: 30px;
+  paddingn-bottom: 5px;
+}
