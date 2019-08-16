@@ -3,7 +3,7 @@
   <nav>
 
     <ul>
-     <li><img id="home-img" src="/assets/images/home.svg" alt="На главную" routerLink="/articles/"></li>
+     <li><div><img id="home-img" src="/assets/images/home.svg" alt="На главную" routerLink="/articles/"></div></li>
       <li *ngIf="adminGuard.canActivate()"><a routerLink="/admin/articles">Управление статьями</a></li>
     </ul>
   </nav>
