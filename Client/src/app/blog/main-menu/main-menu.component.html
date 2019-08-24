@@ -1,13 +1,27 @@
-<div>
+<!--<div>
   <app-user align="right"></app-user>
   <nav>
 
     <ul>
-     <li><div><img id="home-img" src="/assets/images/home.svg" alt="На главную" routerLink="/articles/"></div></li>
+     <li><div id="home-img"><img  src="/assets/images/home.svg" alt="На главную" routerLink="/articles/"></div></li>
       <li *ngIf="adminGuard.canActivate()"><a routerLink="/admin/articles">Управление статьями</a></li>
     </ul>
   </nav>
-  <!--<a >Статьи</a>-->
-</div>
+
+</div>-->
+
+<nav>
+  <div id="home-img"><img  src="/assets/images/home.svg" alt="На главную" routerLink="/articles/"></div>
+  <ul>
+    <ul>
+
+      <li><a>link</a></li>
+
+      <li *ngIf="adminGuard.canActivate()"><a routerLink="/admin/articles">Управление статьями</a></li>
+    </ul>
+  </ul>
+  <app-user align="right"></app-user>
+</nav>
+
 
 

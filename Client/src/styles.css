@@ -99,7 +99,13 @@ textarea
   z-index: 100;
   overflow: auto;
 }
-
+.buttonText
+{
+  float: right;
+  line-height: 22px;
+  margin: 1px;
+  text-align: right;
+}
 #modalWindow{
   opacity: 1;
   margin: 50px;

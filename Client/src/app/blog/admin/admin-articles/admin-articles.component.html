@@ -1,7 +1,7 @@
 <h1>Статьи</h1>
 <a href="/admin/articles/add/" class="rightPanel">
   <div class="buttonText">Создать статью</div>
-  <img src="assets/images/add.png" alt="Создать" class="rightButton">
+  <img src="assets/images/add_green.svg" alt="Создать" id="AddButton" class="rightButton">
 
 </a>
 <div class="clr"></div>
@@ -20,10 +20,10 @@
       <td>{{article.updated| date:'dd.MM.yy'}}</td>
       <td width="60px">
         <a href="articles/delete/{{id}}">
-          <img src="assets/images/delete.svg" alt="Удалить" class="rightButton">
+          <img src="assets/images/trash.svg" alt="Удалить" class="rightButton">
         </a>
         <a routerLink="edit/{{article.id}}">
-          <img src="assets/images/edit.png" alt="Редактировать" class="rightButton">
+          <img src="assets/images/pen.svg" alt="Редактировать" class="rightButton">
         </a>
       </td>
     </tr>

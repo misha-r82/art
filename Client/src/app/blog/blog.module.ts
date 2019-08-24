@@ -13,6 +13,7 @@ import {CkEditorComponent} from "./articles/ckeditor.component";
 import { AdminMenuComponent } from './admin/admin-menu/admin-menu.component';
 import {AuthModule} from "../auth/auth.module";
 import { AdminArticlesComponent } from './admin/admin-articles/admin-articles.component';
+import { LastArticlesComponent } from './articles/last-articles/last-articles.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AdminArticlesComponent } from './admin/admin-articles/admin-articles.co
     CkEditorComponent,
     AdminMenuComponent,
     AdminArticlesComponent,
+    LastArticlesComponent,
 
   ],
   imports:[

@@ -1,35 +1,79 @@
-nav{
+/*nav{
   background:#063;
   color:#fff;
-  overflow:auto;
-  height:30px;
-  padding:15px 0 0 7px;
+  text-align: left;
   font-size: 14px;
-}
-nav li{
-  float:left;
   list-style:none;
 }
+nav li{
+  border: solid 1px black;
+  display: inline-block;
+
+  top : 0;
+}
+.menu-main li:last-child:after {content: none;}
 a{
-  padding:15px;
-  margin:0 7px;
+  padding:5px;
+  margin: 10px;
   color:#fff;
   text-decoration:none;
 }
-a.current, a:hover{
-  background: #09c;
-  color:#000;
-}
+ a.current, a:hover, #home-img:hover{
+  background: #00af51;
+}*/
 app-user {
   position: absolute;
-  right: 60px;
+  right: 10px;
+  top: 5px;
   margin: 7px;
+  color: #00cf60;
 }
 
+nav{
+  background:#063;
+  text-align: left;
+  font-size: 14px;
+  list-style:none;
+
+}
+
+nav li{
+  list-style:none;
+  display:inline-block;
+  position:relative;
+  height: 40px;
+
+  min-width: 50px;
+  text-align: center;
+}
+nav li:hover, #home-img:hover{
+  background: #00b956;
+}
+nav li a{
+
+  position:relative;
+  top:10px;
+  margin: 0 5px;
+  text-decoration:none;
+  color:#F5F5F5;
+}
+
+nav li ul{
+  display:none;/*Прячем выпадающее меню*/
+  position:absolute;
+  padding-left:0;
+  width:120px;/*Ширина выпадающего меню*/
+  padding-top:3px;/*Отступ сверху у выпадающего меню*/
+}
+nav li:hover ul{
+  display:block;/*Показываем выпадающее меню при наведение*/
+  left:0px;
+}
 #home-img
 {
-  display: block;
   width: 30px;
   height: 30px;
-  paddingn-bottom: 5px;
+  pading : 5px;
+  margin : 5px;
+  float: left;
 }

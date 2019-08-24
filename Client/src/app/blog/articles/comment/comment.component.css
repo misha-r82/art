@@ -1,7 +1,4 @@
-#btnNewComment
-{
-  float: right;
-}
+
 .rightPanel
 {
   display: inline-block;
@@ -9,12 +6,7 @@
   float: right;
 }
 
-.buttonText
-{
-  float: right;
-  line-height: 22px;
-  margin: 1px;
-}
+
 #comments
 {
 
