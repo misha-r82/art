@@ -1,6 +1,6 @@
 <div id="content">
     <div *ngFor="let article of articles">
-      <H2><a [routerLink]="['/articles/article', article.id]">{{article.title}}</a></H2>
-      <div>{{article.created}}</div>
+      <a class="artLink" [routerLink]="['/articles/article', article.id]">{{article.title}}</a>
+      <!--<div>{{article.created| date:'dd.MM.yy'}}</div>-->
     </div>
 </div>

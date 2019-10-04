@@ -5,8 +5,9 @@ import {AuthService} from "./auth/auth.service";
 @Injectable()
 export class ADminGuard implements CanActivate{
   constructor(private authService: AuthService)  { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean> | boolean{
-    //console.log(this.authService.user)
-    return this.authService.user.isAdmin === true;
-  }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Promise<boolean>{
+    return new Promise<boolean> (function (resolve, reject) {
+        this.authService.getUser().then((user)=>resolve( user.isAdmin ===true));
+      });
+      }
 }

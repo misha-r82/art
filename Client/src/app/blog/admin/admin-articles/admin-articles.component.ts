@@ -13,7 +13,7 @@ export class AdminArticlesComponent implements OnInit {
   constructor( private httpArtService : HttpArticlesService) { }
   articles : Article[];
   ngOnInit() {
-
+    console.log("Admin/Articles!!!");
     this.httpArtService.getArtList(-1).subscribe(
       (data: Article[]) => {
         this.articles = data;
