@@ -23,13 +23,14 @@ a{
 }*/
 app-user {
   position: absolute;
-  right: 10px;
-  top: 5px;
-  margin: 7px;
+  right: 2px;
+  top: 0;
+  margin: 5px;
   color: #00cf60;
 }
 
 nav{
+  position: relative; /*чтобы внутри работало абсолютное позиционирование*/
   background:#063;
   text-align: left;
   font-size: 14px;
