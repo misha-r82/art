@@ -34,21 +34,20 @@ export class AuthService {
   }
   getUser() : Promise<User>
   {
+    let self = this;
     return new Promise(function(resolve, reject) {
-
-    if (this.user != undefined) resolve(this.user);
-    this.http.get(`http://localhost:3000/login/getUser/`, { withCredentials: true }).subscribe(
+    if (self.user != undefined) resolve(this.user);
+    self.http.get(`http://localhost:3000/login/getUser/`, { withCredentials: true }).subscribe(
       (user : User)=> {
-        console.log("FETCHuSER!!!");
         if (user && user.hasOwnProperty("userName")) {
-          this.user = user;
-          this.isSigned = true;
+          self.user = user;
+          self.isSigned = true;
 
         } else {
-          this.user = new User();
-          this.isSigned = false;
+          self.user = new User();
+          self.isSigned = false;
         }
-        resolve(this.user);
+        resolve(self.user);
       });
     });
 

@@ -5,16 +5,13 @@ import {AuthService} from "./auth/auth.service";
 import {promisify} from "util";
 @Injectable()
 export class ADminGuard implements CanActivate{
-  constructor(authService: AuthService)  { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Promise<boolean> | boolean{
-    return true;
+  constructor(private authService: AuthService)  {  }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Promise<boolean> | boolean
+  {
+    console.log("canActivate");
     return new Promise<boolean> (function (resolve, reject) {
-      if (this.authService === undefined)
-      {
-        console.log("AuthService is indefinded!!!");
-        reject(false);
-      }
-        this.authService.getUser().then((user)=>resolve( user.isAdmin ===true));
+        this.authService.getUser().then(()=>
+        (user)=>{ resolve( user.isAdmin ===true); });
       });
-      }
+  }
 }
