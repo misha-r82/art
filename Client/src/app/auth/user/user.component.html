@@ -2,5 +2,4 @@
   <div *ngIf="authService.isSigned" id="user-name">{{user.userName}}</div>
   <a *ngIf="authService.isSigned" (click)="onLogOut()">Выход</a>
   <a *ngIf="!authService.isSigned" href="\login">Вход</a>
-  <div>Test div</div>
 </div>

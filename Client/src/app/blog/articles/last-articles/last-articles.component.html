@@ -1,4 +1,5 @@
 <div id="content">
+    <div>NewArticles</div>
     <div *ngFor="let article of articles">
       <a class="artLink" [routerLink]="['/articles/article', article.id]">{{article.title}}</a>
       <!--<div>{{article.created| date:'dd.MM.yy'}}</div>-->

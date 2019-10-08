@@ -11,6 +11,7 @@ export class AuthService {
 
   io: Subject<any>;
   isSigned:boolean = false;
+
   private user: User;
   // Our constructor calls our wsService connect method
   constructor(private wsService: WebsocketService, private http: HttpClient) {
