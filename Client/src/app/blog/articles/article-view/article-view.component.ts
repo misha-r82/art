@@ -45,9 +45,10 @@ export class ArticleViewComponent implements OnInit {
   ngOnInit() {
     let id = +this.route.params.subscribe((params: Params) => {
       id = +params["id"];
-      var data = this.httpArtService.getArtList(id);
+
       this.httpArtService.getArtСontent(id).subscribe(
         (data: Article) => {
+          console.log(data);
           this.article = data;
         });
     });

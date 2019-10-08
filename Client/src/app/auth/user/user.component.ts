@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
 //     console.log("user.OnInit");
      this.authService.getUser().then(u=>
      {
-         this.user = u
+         this.user = u;
      });
   }
 

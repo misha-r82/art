@@ -38,12 +38,12 @@ export class AuthService {
     let self = this;
     return new Promise(function(resolve, reject) {
     if (self.user != undefined) resolve(this.user);
+    console.log("GetUser!")
     self.http.get(`http://localhost:3000/login/getUser/`, { withCredentials: true }).subscribe(
       (user : User)=> {
         if (user && user.hasOwnProperty("userName")) {
           self.user = user;
           self.isSigned = true;
-
         } else {
           self.user = new User();
           self.isSigned = false;
