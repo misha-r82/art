@@ -9,10 +9,15 @@ import {ADminGuard} from "../../admin.guard";
 
 })
 export class MainMenuComponent implements OnInit {
+  private isAdmin = false;
 
-  constructor(private adminGuard : ADminGuard) { }
+  constructor(private adminGuard: ADminGuard) {
 
-  ngOnInit() {
   }
-
+  ngOnInit() {
+      this.adminGuard.canActivate(null, null).then(
+    (isAdmin : boolean) => {
+      this.isAdmin = isAdmin;
+    });
+  }
 }

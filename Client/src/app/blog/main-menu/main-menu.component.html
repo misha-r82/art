@@ -14,8 +14,7 @@
   <div id="home-img"><img  src="/assets/images/home.svg" alt="На главную" routerLink="/articles/"></div>
   <ul>
       <li><a>link</a></li>
-      <!--<li *ngIf="adminGuard.canActivate()"><a routerLink="/admin/articles">Управление статьями</a></li>-->
-      <li><a routerLink="/admin/articles">Управление статьями</a>
+      <li *ngIf="isAdmin"><a routerLink="/admin/articles">Управление статьями</a></li>
 
   </ul>
   <app-user align="right"></app-user>

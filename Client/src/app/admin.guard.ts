@@ -6,12 +6,12 @@ import {promisify} from "util";
 @Injectable()
 export class ADminGuard implements CanActivate{
   constructor(private authService: AuthService)  {  }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Promise<boolean> | boolean
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Promise<boolean>
   {
-    console.log("canActivate");
+    let self = this;
     return new Promise<boolean> (function (resolve, reject) {
-        this.authService.getUser().then(()=>
-        (user)=>{ resolve( user.isAdmin ===true); });
+        self.authService.getUser().then((user)=>
+        { resolve( user.isAdmin ===true); });
       });
   }
 }
