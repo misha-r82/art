@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import {BlogModule} from "./blog/blog.module";
 import {AuthModule} from "./auth/auth.module";
 import {AuthService} from "./auth/auth.service";
+import { PairsMainComponent } from '../../Pairs/pairs-main/pairs-main.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    PairsMainComponent,
   ],
   imports: [
     BrowserModule,
