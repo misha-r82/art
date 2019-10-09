@@ -8,14 +8,13 @@ import { AppComponent } from './app.component';
 import {BlogModule} from "./blog/blog.module";
 import {AuthModule} from "./auth/auth.module";
 import {AuthService} from "./auth/auth.service";
-import { PairsMainComponent } from '../../Pairs/pairs-main/pairs-main.component';
-
+import {PairsModule} from "../../Pairs/pairs.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PairsMainComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -23,6 +22,7 @@ import { PairsMainComponent } from '../../Pairs/pairs-main/pairs-main.component'
     HttpClientModule,
     AuthModule,
     BlogModule,
+    PairsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

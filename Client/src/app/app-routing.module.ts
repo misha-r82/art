@@ -7,6 +7,7 @@ import {ArticleViewComponent} from "./blog/articles/article-view/article-view.co
 import {ArticleEditComponent} from "./blog/admin/article-edit/article-edit.component";
 import {AdminArticlesComponent} from "./blog/admin/admin-articles/admin-articles.component";
 import {ADminGuard} from "./admin.guard";
+import {PairsMainComponent} from "../../Pairs/pairs-main/pairs-main.component";
 
 const artRoutes: Routes = [
   { path: 'razdel/:id', component: ArticleListComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path:'admin/articles', component:AdminArticlesComponent, canActivate:[ADminGuard]},
   {path:'admin/articles/edit/:id', component:ArticleEditComponent, canActivate:[ADminGuard]},
   {path:'admin/articles/add', component:ArticleEditComponent, canActivate:[ADminGuard]},
+  { path: 'pairs', component: PairsMainComponent },
   { path: '**', redirectTo:"/articles" },
 ];
 
