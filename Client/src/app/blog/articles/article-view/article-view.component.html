@@ -6,16 +6,16 @@
 </main>
 <section id="comments">
   <div>
-    <!--<a id="btnNewComment" (click)="addCommentClick()" *ngIf="authServoce.isSigned">
+    <a id="btnNewComment" (click)="addCommentClick()" *ngIf="authServoce.isSigned">
       <div>
         <img src="assets/images/add.svg" id="AddButton" class="rightButton">
         <div class="buttonText">Добавить комментарий</div>
       </div>
-    </a>-->
-    <!--<textarea id="txtNewComment" rows="3" [(ngModel)]="commentText" *ngIf="authServoce.isSigned"></textarea>-->
+    </a>
+    <textarea id="txtNewComment" rows="3" [(ngModel)]="commentText" *ngIf="authServoce.isSigned"></textarea>
     <!--<app-comment *ngFor="let comm of article.comments" [comment]="comm"
     (onDelete)="onDelete($event)" (onEndEdit)="onEndEdit($event)"></app-comment>-->
-  </div>
+    <app-comment *ngFor="let comm of article.comments" [comment]="comm"></app-comment>  </div>
  </section>
 
 
