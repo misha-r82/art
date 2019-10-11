@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import {BlogModule} from "./blog/blog.module";
 import {AuthModule} from "./auth/auth.module";
 import {AuthService} from "./auth/auth.service";
-import {PairsModule} from "../../Pairs/pairs.module";
+import {PairsModule} from "./Pairs/pairs.module";
+import { SqareListComponent } from './Pairs/sqare-list/sqare-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SqareListComponent,
 
   ],
   imports: [
