@@ -22,7 +22,7 @@ export class AuthComponent implements OnInit {
   ngOnInit() {  }
 
   testClick() {
-    this.wsAuthService.sendMsg("123");
+    //this.wsAuthService.sendMsg("123");
   }
   vkClick()
   {

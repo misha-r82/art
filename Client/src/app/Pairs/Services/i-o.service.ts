@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 
 
 @Injectable()
-export class AuthService {
+export class IOService {
 
   io: Subject<any>;
 
@@ -14,7 +14,20 @@ export class AuthService {
   this.io = <Subject<any>>wsService.connect();
 }
 
+sendResult(data)
+{
+  this.io.next(data);
+}
+public getTask(tskQer, cb)
+{
 
+  this.io.next(tskQer);
+  this.io.subscribe(()=>
+  {
+    cb();
+    this.io.unsubscribe();
+  })
+}
 
 sendMsg(msg) {
   this.io.next(msg);

@@ -1,8 +1,13 @@
+
 const MongoClient = require("mongodb").MongoClient;
-module.exports = function()
+module.exports = function(io, socket )
 {
+    socket.on("message", message => {
+    console.log("Message Received: " + message);
+    io.emit("message", { type: "new-message", text: message });
+  });
     // создаем объект MongoClient и передаем ему строку подключения
-    const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlParser: true });
+    /*const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlParser: true });
     mongoClient.connect(function(err, client){
 
         const db = client.db("pair_stat");
@@ -16,5 +21,5 @@ module.exports = function()
             console.log(result.ops);
             client.close();
         });
-    });
+    });*/
 }

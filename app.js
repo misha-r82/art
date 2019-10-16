@@ -31,16 +31,11 @@ var index = require('./routes/index');
 var articles = require('./routes/articles');
 var articlesAdmin = require('./routes/admin/articles');
 var comments = require('./routes/comments');
-
 const cors = require('cors');
-const whitelist = ['http://localhost:4200'];
 const corsOptions = {
     credentials: true, // This is important.
     origin: (origin, callback) => {
-        //if(whitelist.includes(origin))
             return callback(null, true)
-
-        //callback(new Error('Not allowed by CORS'));
     }
 }
 app.use(cors(corsOptions));

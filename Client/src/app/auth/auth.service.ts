@@ -23,7 +23,10 @@ export class AuthService {
       this.io.unsubscribe();
       console.log(data)
     });
-    this.io.next({"action" : "logout"});*/
+    this.io.next({"action" : "logout"});
+    sendMsg(msg) {
+      this.io.next(msg);
+    }*/
     this.http.get(`http://localhost:3000/login/logout/`,{ withCredentials: true }).subscribe(
       (data)=>
       {
@@ -60,7 +63,5 @@ export class AuthService {
     let data = {"login" : login, "password" : password}
     return this.http.post(`http://localhost:3000/login`, data, { withCredentials: true });
   }
-  sendMsg(msg) {
-    this.io.next(msg);
-  }
+
 }
