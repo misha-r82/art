@@ -39,7 +39,7 @@ app.io = io;
 
 io.on("connection", socket => {
   // Log whenever a user connects
-  require('../controllers/pairs.js')(io, socket);
+  require('../pairs/PairsRouter.js')(io, socket);
   console.log("socket connected");
    /* socket.on("message", (data)=>
     {

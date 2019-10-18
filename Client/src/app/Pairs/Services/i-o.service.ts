@@ -21,7 +21,7 @@ sendResult(data)
 public getTask(tskQer, cb)
 {
 
-  this.io.next(tskQer);
+  this.io.next({type : "getTask", tsk:tskQer});
   this.io.subscribe(()=>
   {
     cb();

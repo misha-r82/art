@@ -1,11 +1,17 @@
-
-const MongoClient = require("mongodb").MongoClient;
-module.exports = function(io, socket )
+module.exports function getTask()
 {
-    socket.on("message", message => {
-    console.log("Message Received: " + message);
-    io.emit("message", { type: "new-message", text: message });
-  });
+    return {
+        pairs : [
+        {key1:"pair1"},
+        {key2:"pair2"}
+        ],
+        period : "1000",
+        showTime : "0.7"
+    }
+}
+function saveResult(result) {
+}
+const MongoClient = require("mongodb").MongoClient;
     // создаем объект MongoClient и передаем ему строку подключения
     /*const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlParser: true });
     mongoClient.connect(function(err, client){
@@ -22,4 +28,5 @@ module.exports = function(io, socket )
             client.close();
         });
     });*/
+return this;
 }
