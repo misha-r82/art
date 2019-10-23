@@ -22,9 +22,9 @@ public getTask(tskQer, cb)
 {
 
   this.io.next({type : "getTask", tsk:tskQer});
-  this.io.subscribe(()=>
+  this.io.subscribe((data)=>
   {
-    cb();
+    cb(data);
     this.io.unsubscribe();
   })
 }

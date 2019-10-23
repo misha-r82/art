@@ -1,4 +1,4 @@
-module.exports function getTask()
+module.exports.getTask = function ()
 {
     return {
         pairs : [
@@ -9,7 +9,7 @@ module.exports function getTask()
         showTime : "0.7"
     }
 }
-function saveResult(result) {
+module.exports.saveResult = function (result) {
 }
 const MongoClient = require("mongodb").MongoClient;
     // создаем объект MongoClient и передаем ему строку подключения
@@ -28,5 +28,5 @@ const MongoClient = require("mongodb").MongoClient;
             client.close();
         });
     });*/
-return this;
-}
+
+

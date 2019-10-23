@@ -1,6 +1,6 @@
 
 var tasks = require("./PairsController.js");
-module.exports. = function(io, socket )
+module.exports = function(io, socket )
 {
     socket.on("message", message => {
         var data = JSON.parse(message);
@@ -8,8 +8,8 @@ module.exports. = function(io, socket )
         {
             switch (data.type) {
                 case "getTask":
-
-                    io.emit("message", { type: "newTask", tasks.getTask() });
+                    var t = tasks.getTask()
+                    io.emit("message", { type: "newTask", t });
                     break;
                 case "saveResult": break;
 
@@ -18,5 +18,5 @@ module.exports. = function(io, socket )
     console.log("Message Received: " + message);
 
   });
-return this;
+
 }
