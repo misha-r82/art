@@ -2,7 +2,12 @@ import {StrPair} from "./str-pair.model";
 
 export class PairList {
   items: StrPair[];
-
+  constructor (sourse : Array<any>)
+  {
+    for (let i = 0; i < this.items.length; i++) {
+      this.items.push(sourse[i]);
+    }
+  }
   async showEach(period, part) {
     let period2 = part * period;
     for (let i = 0; i < this.items.length; i++) {

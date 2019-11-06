@@ -10,15 +10,13 @@ import {AuthModule} from "./auth/auth.module";
 import {AuthService} from "./auth/auth.service";
 import {PairsModule} from "./Pairs/pairs.module";
 import { SqareListComponent } from './Pairs/sqare-list/sqare-list.component';
-import { PairsTrainComponent } from './Pairs/Trains/pairs-train-component/pairs-train.component.js';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SqareListComponent,
-    PairsTrainComponent,
-
   ],
   imports: [
     BrowserModule,

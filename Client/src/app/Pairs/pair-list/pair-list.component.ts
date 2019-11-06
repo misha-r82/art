@@ -10,7 +10,7 @@ import {PairList} from "../models/pair-list.model";
   styleUrls: ['./pair-list.component.css']
 })
 export class PairListComponent implements OnInit {
-  pList: PairList;
+@Input()  pList: PairList;
   constructor() {
     /*this.items = [];
     for(let i = 0; i<10; i++)
